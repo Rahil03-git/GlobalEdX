@@ -231,3 +231,48 @@ background-color: #444;
   .search-button:active {
   transform: scale(0.95); 
   }
+
+  /* 2nd navbar css part start */
+.second-navbar {
+  background-color: white;
+  color: black;
+  padding: 6px 0; /* Match padding closer to main navbar */
+  position: relative;
+  border-bottom: 1px solid #ddd; /* Optional: subtle separator line */
+  border-color: black;/* Explicit border color */
+  border-width: 1px;
+}
+
+
+.second-navbar .nav-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: right; /* Align items to the right */
+  margin: 0; /* Remove default margin */
+  align-items: center;
+  gap: 20px; /* Space between the items */
+}
+
+.second-navbar .nav-list li {
+  display: inline-block;
+}
+
+.second-navbar .nav-list a {
+  text-decoration: none; /* Remove underline */
+  color: black;
+  font-size: 16px; /* Text size */
+  padding: 15px 25px;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.second-navbar .nav-list a:hover {
+  background-color: #155C60; /* Slightly lighter shade on hover */
+}
+
+.second-navbar .nav-list a:active {
+  background-color: #444; /* Even darker shade when active */
+}
+/* 2nd navbar css part end */
+
+/*navbar css part end*/
