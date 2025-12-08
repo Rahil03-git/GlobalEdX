@@ -87,3 +87,101 @@ header {
   }
 }
 /* header css part end */
+
+<!-- Navbar HTML part start -->
+<nav class="navbar navbar-expand-lg">
+	<div class="container">
+	  <a class="navbar-brand" href="#">
+		<img src="img/logo.png.png" alt="GlobalEdX Logo">
+	  </a>
+	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		  <li class="nav-item">
+			<a class="nav-link " aria-current="page" href="index.html">Home</a>
+		  </li>
+           <!-- Dream Countries Dropdown -->
+<li class="nav-item dropdown" id="dreamDropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dream Countries
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dreamcountry-option" href="desh.html"><b>Australia</b></a></li>
+    <li><a class="dreamcountry-option" href="desh3.html"><b>Germany</b></a></li>
+    <li><a class="dreamcountry-option" href="desh5.html"><b>United States of America</b></a></li>
+    <li><hr class="dropdown-divider"></li>
+  </ul>
+</li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Recommendation Engine</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#" id="offerLetterBtn">Get Offer Letter</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="contact.html">Contacts</a>
+		  </li>
+		  	<li><hr class="dropdown-divider"></li>
+		</ul>
+		<!-- Search Form -->
+		<div id="suggestions" class="suggestions"></div>
+		<form class="d-flex" role="search" onsubmit="redirectCountry(event)">
+			<input id="searchInput" class="search-input" type="search" placeholder="Search for countries" aria-label="Search">
+			<button class="search-button" type="submit">
+			  <img src="img/search.png" alt="Search" class="search-icon">
+			</button>
+		  </form>		  
+	  </div>
+	</div>
+  </nav>
+
+    <nav class="second-navbar">
+  <div class="container">
+    <ul class="second-nav-list">
+      <li class="left-group">
+		<button class="home-button" onclick="location.href='index.html';">
+			<img src="img/h1.png" alt="Home">
+		</button>
+      </li>
+
+      <li class="right-group">
+        <a href="#" id="faqsOption">FAQs</a>
+
+        <a href="#" class="user-name" id="userName">Rahil</a>
+
+        <div class="profile-wrapper" style="position: relative; display: inline-block;">
+          <div id="profileToggle" class="profile-button">
+            <img src="img/p1.png" alt="Profile">
+          </div>
+
+          <div class="profile-dropdown" id="profileDropdown" style="top: 100%; left: -16px;">
+            <div class="profile-header">
+              <div class="avatar"></div>
+              <div class="profile-info"></div>
+            </div>
+
+            <div class="dropdown-options">
+              <button class="option">➕ Add another Account</button>
+              <button class="option">📝 Customize Profile</button>
+              <button class="option">👤 Manage your GlobalEdX Account</button>
+              <button class="option">🔑 Privacy & Security</button>
+              <button class="option">⚙️ Settings</button>
+            </div>
+
+            <div class="logout-section">
+              <button type="button" class="logout-btn">Log Out</button>
+            </div>
+          </div>
+        </div>
+
+        <a href="login.html" id="loginLink">Log in / Sign up</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+   <!-- second navbar end --> 
+
+ <!-- Navbar HTML part end  -->
