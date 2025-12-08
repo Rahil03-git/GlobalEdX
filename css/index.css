@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+a{
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul,ol{
+  list-style: none;
+}
+h1,h2,h3,h4,h5,h6,p,nav,span,a,div,ul,li,footer{
+padding: 0;
+margin: 0;
+}
+/* header part css start */
+header {
+  background-color: #0C2132;
+  padding: 8px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: slideInHeader 1s ease-out forwards;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* 3D flip animation */
+@keyframes slideInHeader {
+  0% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+.welcome p {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+  animation: fadeInText 1.2s ease-out forwards;
+}
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.header_text {
+  font-style: italic;
+  float: right;
+  color: #ffffff;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  /* caret removed: no border-right */
+  width: 0;
+  animation: typingLoop 8s steps(35, end) infinite;
+}
+
+/* Typing + Erasing Loop Animation */
+@keyframes typingLoop {
+  0% {
+    width: 0;
+  }
+  40% {
+    width: 400px;
+  }
+  60% {
+    width: 400px;
+  }
+  100% {
+    width: 0;
+  }
+}
+/* header css part end */
