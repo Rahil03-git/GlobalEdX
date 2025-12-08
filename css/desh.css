@@ -764,3 +764,114 @@ cursor: pointer;
 background-color: #f0f0f0;
 }
 /* notification panel end */
+
+/* FAQ Overlay (invisible backdrop to detect outside click) */
+
+/* respnsive part start */
+@media(max-width:1024px){
+.navbar-nav .nav-item .nav-link{
+  font-size: 16px; /* Adjust font size for smaller screens */
+}
+.search-form {
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align to the left */
+}
+.search-input {
+  width: 100%; /* Full width on smaller screens */
+  margin-bottom: 10px; /* Space between input and button */
+}
+.go-button {
+  width: auto; /* Auto width for button */
+}
+}
+@media (max-width: 992px) {
+.navbar-nav .nav-item .nav-link {
+  font-size: 16px; /* Adjust font size for smaller screens */
+}
+.search-form {
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align to the left */
+}
+.search-input {
+  width: 100%; /* Full width on smaller screens */
+  margin-bottom: 10px; /* Space between input and button */
+}
+.go-button {
+  width: auto; /* Auto width for button */
+}
+}
+
+@media (max-width: 768px) {
+.navbar-nav .nav-item .nav-link {
+  font-size: 14px; /* Adjust font size for smaller screens */
+}
+.search-form {
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align to the left */
+}
+.search-input {
+  width: 100%; /* Full width on smaller screens */
+  margin-bottom: 10px; /* Space between input and button */
+}
+.go-button {
+  width: auto; /* Auto width for button */
+}
+}
+@media (max-width: 576px) {
+.navbar-nav .nav-item .nav-link {
+  font-size: 12px; /* Further adjust font size for very small screens */
+}
+.search-input {
+  width: 100%; /* Full width on smaller screens */
+  margin-bottom: 10px; /* Space between input and button */
+}
+.go-button {
+  width: auto; /* Auto width for button */
+}
+}
+@media (max-width: 768px) {
+.second-navbar .nav-list {
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align to the left */
+}
+.second-navbar .nav-list li {
+  margin-bottom: 10px; /* Space between items */
+}
+.second-navbar .nav-list a {
+  padding: 10px; /* Adjust padding for smaller screens */
+}
+}
+@media (max-width: 576px) {
+.second-navbar .nav-list a {
+  font-size: 14px; /* Further adjust font size for very small screens */
+}
+.second-navbar .nav-list li {
+  margin-bottom: 5px; /* Space between items */
+}
+}
+
+@media (max-width: 768px) {
+.carousel-caption h5 {
+  font-size: 1.5rem; /* Adjust font size for smaller screens */
+}
+.carousel-caption p {
+  font-size: 1rem; /* Adjust font size for smaller screens */
+}
+}
+@media (max-width: 576px) {
+.carousel-caption h5 {
+  font-size: 1.2rem; /* Further adjust font size for very small screens */
+}
+.carousel-caption p {
+  font-size: 0.9rem; /* Further adjust font size for very small screens */
+}
+}
+@media (max-width: 768px) {
+.footer {
+  padding: 10px; /* Adjust padding for smaller screens */
+}
+.footer_text p {
+  font-size: 0.8rem; /* Adjust font size for smaller screens */
+}
+}
+/* respnsive part end */
