@@ -18,3 +18,24 @@ if (isset($_GET['action']) && $_GET['action'] === 'status') {
 }
 ?>
 
+<script>
+async function checkLogin() {
+    try {
+        const response = await fetch('backend.php?action=status');
+        const data = await response.json();
+        if (data.isLoggedIn) {
+            // Example: unlock buttons
+            document.querySelectorAll('.locked').forEach(btn => {
+                btn.classList.remove('locked');
+                btn.classList.add('unlocked');
+                // You can also update href dynamically if needed
+            });
+        }
+    } catch (error) {
+        console.error('Error fetching login status:', error);
+    }
+}
+
+// Call on page load
+document.addEventListener('DOMContentLoaded', checkLogin);
+</script>
