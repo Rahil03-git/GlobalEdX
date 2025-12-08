@@ -579,3 +579,116 @@ body {
   font-weight: bold;
   font-size: 18px;
 }
+
+/* notification panel start */
+
+#notificationBanner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 1000;
+  transition: width 0.3s, height 0.3s;
+}
+
+.banner-header {
+  background-color: #e0e0e0;
+  color: black;
+  padding: 2px;
+  font-weight: bold;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  padding-left: 15px;
+}
+
+.banner-controls span {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.banner-body1 {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers the image + text block */
+  padding: 25px;
+  color: #007BFF;
+  font-size: 18px;
+  text-align: left; /* allow text to flow next to the image */
+}
+
+.warning-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+}
+
+
+
+.banner-body {
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.banner-footer {
+  padding: 10px;
+  text-align: right;
+  font-size: 13px;
+}
+
+.banner-footer button {
+  margin-left: 10px;
+}
+
+#closeBtn {
+  font-size: 18px;
+  padding: 5px;
+  transition: transform 0.2s;
+}
+
+#closeBtn:hover{
+background-color: red;
+border-radius: 5px;
+}
+
+#cancelBtn, #okBtn {
+  background-color: #f0f0f0;
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+#cancelBtn:hover, #okBtn:hover {
+  background-color: #d7e3f0;
+  color: #007BFF;
+  transform: scale(1.05);
+}
+
+
+
+#notificationBanner button {
+  padding: 5px 12px;
+  border: 2px solid black;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+}
+
+#notificationBanner button:hover {
+  background-color: #f0f0f0;
+}
+/* notification panel end */
+
