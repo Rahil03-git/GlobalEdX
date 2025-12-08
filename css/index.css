@@ -277,3 +277,305 @@ background-color: #444;
 /* 2nd navbar css part end */
 
 /*navbar css part end*/
+
+/* banner css part start */
+.carousel-item img {
+height: 700px; /* Adjust based on your design */
+/* object-fit: cover; */
+transition: all linear .3s;
+text-align: center;
+background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-caption {
+background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+padding: 20px;
+border-radius: 20px;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.carousel-caption h5 {
+font-family: 'Oswald', sans-serif;
+font-size: 2rem;
+font-weight: bold;
+color: #ffffff;
+}
+
+.carousel-caption p {
+font-family: 'Open Sans', sans-serif;
+font-size: 1.2rem;
+padding-top:25px;
+color: #dddddd;
+}
+
+@keyframes reveal-text {
+  0% {
+    max-height: 0;
+    opacity: 0;
+  }
+  100% {
+    max-height: 500px; /* big enough to show all text */
+    opacity: 1;
+  }
+}
+
+.carousel-caption p {
+  overflow: hidden;
+  max-height: 0;
+  color: white !important;
+  font-size: 1.2rem; /* increased from 1rem */
+  line-height: 1.5;
+  animation: reveal-text 8s ease forwards;
+}
+@keyframes typing-h5 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.carousel-caption h5 {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: none; /* Remove blinking cursor */
+  color: white !important;
+  font-family: 'Times New Roman', Times, serif;
+  width: 0;
+  animation: typing-h5 4s steps(30, end) forwards;
+  box-sizing: border-box;
+}
+
+
+
+/* chatbot part starts */
+.chatbot-icon {
+  background-color: black;
+  border-radius: 30%; 
+  position: fixed;
+  bottom: 60px;
+  right: 30px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.chatbot-icon:hover {
+  transform: scale(1.1);
+}
+
+.chatbot-icon img {
+  width: 70px;   /* Increased image size inside circle */
+  height: 70px;
+  object-fit: contain;
+}
+
+/* chatbot part ends */
+
+
+/* banner css part end */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Overlay for popup */
+/* Make #faqOverlay a non-fullscreen positioned panel */
+/* FAQ Overlay (invisible backdrop to detect outside click) */
+/* FAQ Overlay */
+#faqOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 900px;
+  display: none;
+  z-index: 1050;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* FAQ Popup Panel */
+#faqPopup {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(100vh);
+  width: 90%;
+  max-width: 900px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1100;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Open state */
+#faqOverlay.open #faqPopup {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Optional scrollbar styling */
+#faqPopup::-webkit-scrollbar {
+  width: 6px;
+}
+#faqPopup::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+/* Close icon */
+#faqPopup i.fa-times {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+  z-index: 1200;
+}
+
+/* --- Modern Header Bar --- */
+.faq-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #95CCCF;
+  border-bottom: 1px solid #ddd;
+  padding: 12px 20px;
+  position: relative;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 20px;
+}
+
+
+/* Logo left */
+.faq-logo {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 3px solid #155C60;
+  border-radius: 30%;
+}
+
+.faq-logo img {
+  max-width: 90px;
+  height: auto;
+
+}
+
+/* Centered title */
+.faq-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Optional: FAQ Question/Answer basic styling (if needed) */
+.faq-item {
+  margin-bottom: 12px;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  background: #e9eff6;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.faq-question:hover {
+  background: #d7e3f0;
+}
+
+.faq-answer {
+  padding: 10px 16px;
+  background: #f9fbfd;
+  border-radius: 0 0 6px 6px;
+  margin-top: 4px;
+  display: none;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+.faq-header-bar {
+  display: flex;
+  align-items: center;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  background: #f0f4f8;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.faq-logo {
+  height: 40px;
+  margin-right: 12px;
+}
+
+.faq-header-bar h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question:hover {
+  background: #f9f9f9;
+}
+
+.faq-answer {
+  display: none;
+  padding: 12px 16px;
+  background: #f7f9fc;
+  border-top: 1px solid #ddd;
+}
+
+.faq-question .icon {
+  font-weight: bold;
+  font-size: 18px;
+}
