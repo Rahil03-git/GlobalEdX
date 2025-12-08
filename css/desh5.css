@@ -612,3 +612,266 @@ float: right;
 .footer-bottom-right span {
   font-weight: bold;
 }
+
+/* 2nd navbar css part start */
+/* shared container */
+.second-navbar .nav-list {
+  display: flex;
+  justify-content: space-between; /* push left and right groups apart */
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.second-navbar .left-group,
+.second-navbar .right-group {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* space between buttons/links */
+}
+
+.second-navbar li {
+  list-style: none;
+}
+
+.second-navbar .home-button,
+.second-navbar .profile-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.second-navbar a {
+  text-decoration: none;
+  font-weight: bold;
+}
+.nav-list .right-group {
+  margin-left: auto; /* Push this item to the far left */
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.left-group img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+
+.right-group {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.right-group img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+/* 2nd navbar css part end */
+/* notification panel start */
+
+#notificationBanner {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 400px;
+background-color: white;
+border: 2px solid white;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+display: none;
+z-index: 1000;
+transition: width 0.3s, height 0.3s;
+}
+
+.banner-header {
+background-color: #007bff;
+color: white;
+padding: 10px;
+font-weight: bold;
+border-top-left-radius: 6px;
+border-top-right-radius: 6px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.banner-controls span {
+margin-left: 10px;
+cursor: pointer;
+}
+
+.banner-body {
+padding: 15px;
+text-align: center;
+}
+
+.banner-footer {
+padding: 10px;
+text-align: right;
+}
+
+.banner-footer button {
+margin-left: 10px;
+}
+
+#closeBtn {
+font-size: 18px;
+padding: 5px;
+transition: transform 0.2s;
+
+}
+#minimizeBtn,
+#expandBtn {
+font-size: 20px;     /* increase the icon size */
+padding: 6px;        /* increase clickable area */
+cursor: pointer;
+transition: transform 0.2s;
+}
+
+#minimizeBtn:hover,
+#expandBtn:hover {
+transform: scale(1.2); /* optional hover zoom effect */
+}
+
+
+#notificationBanner button {
+padding: 5px 12px;
+border: 2px solid black;
+border-radius: 6px;
+background: white;
+cursor: pointer;
+}
+
+#notificationBanner button:hover {
+background-color: #f0f0f0;
+}
+/* notification panel end */
+
+
+/* FAQ Overlay (invisible backdrop to detect outside click) */
+
+/* respnsive part start */
+@media(max-width:1024px){
+.navbar-nav .nav-item .nav-link{
+  font-size: 16px; /* Adjust font size for smaller screens */
+}
+.search-form {
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align to the left */
+}
+.search-input {
+  width: 100%; /* Full width on smaller screens */
+  margin-bottom: 10px; /* Space between input and button */
+}
+.go-button {
+  width: auto; /* Auto width for button */
+}
+}
+@media (max-width: 992px) {
+.navbar-nav .nav-item .nav-link {
+  font-size: 16px; /* Adjust font size for smaller screens */
+}
+.search-form {
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align to the left */
+}
+.search-input {
+  width: 100%; /* Full width on smaller screens */
+  margin-bottom: 10px; /* Space between input and button */
+}
+.go-button {
+  width: auto; /* Auto width for button */
+}
+}
+
+@media (max-width: 768px) {
+.navbar-nav .nav-item .nav-link {
+  font-size: 14px; /* Adjust font size for smaller screens */
+}
+.search-form {
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align to the left */
+}
+.search-input {
+  width: 100%; /* Full width on smaller screens */
+  margin-bottom: 10px; /* Space between input and button */
+}
+.go-button {
+  width: auto; /* Auto width for button */
+}
+}
+@media (max-width: 576px) {
+.navbar-nav .nav-item .nav-link {
+  font-size: 12px; /* Further adjust font size for very small screens */
+}
+.search-input {
+  width: 100%; /* Full width on smaller screens */
+  margin-bottom: 10px; /* Space between input and button */
+}
+.go-button {
+  width: auto; /* Auto width for button */
+}
+}
+@media (max-width: 768px) {
+.second-navbar .nav-list {
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align to the left */
+}
+.second-navbar .nav-list li {
+  margin-bottom: 10px; /* Space between items */
+}
+.second-navbar .nav-list a {
+  padding: 10px; /* Adjust padding for smaller screens */
+}
+}
+@media (max-width: 576px) {
+.second-navbar .nav-list a {
+  font-size: 14px; /* Further adjust font size for very small screens */
+}
+.second-navbar .nav-list li {
+  margin-bottom: 5px; /* Space between items */
+}
+}
+
+@media (max-width: 768px) {
+.carousel-caption h5 {
+  font-size: 1.5rem; /* Adjust font size for smaller screens */
+}
+.carousel-caption p {
+  font-size: 1rem; /* Adjust font size for smaller screens */
+}
+}
+@media (max-width: 576px) {
+.carousel-caption h5 {
+  font-size: 1.2rem; /* Further adjust font size for very small screens */
+}
+.carousel-caption p {
+  font-size: 0.9rem; /* Further adjust font size for very small screens */
+}
+}
+@media (max-width: 768px) {
+.footer {
+  padding: 10px; /* Adjust padding for smaller screens */
+}
+.footer_text p {
+  font-size: 0.8rem; /* Adjust font size for smaller screens */
+}
+}
+/* respnsive part end */
