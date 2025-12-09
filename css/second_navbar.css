@@ -1,0 +1,88 @@
+.second-navbar {
+  background: #ffffff;
+  border-bottom: 1px solid #000;
+  padding: 6px 0;
+  position: relative;
+  z-index: 10;
+}
+
+/* Prevent Bootstrap class interference */
+.second-navbar * {
+  box-sizing: border-box;
+}
+
+/* THE MAIN FIX — isolate this UL */
+.second-navbar .second-nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between; /* Home left, other items right */
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* LEFT GROUP (Home button) */
+.second-navbar .left-group {
+  display: flex;
+  align-items: center;
+}
+
+.second-navbar .home-button img {
+  width: 28px;
+  height: 28px;
+}
+
+/* RIGHT GROUP (FAQs, Name, Profile, Login) */
+.second-navbar .right-group {
+  display: flex;
+  align-items: center;
+  gap: 25px; /* spacing restored */
+}
+
+/* Prevent Bootstrap nav-link from overwriting */
+.second-navbar .right-group a {
+  text-decoration: none !important;
+  color: black !important;
+  font-size: 16px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: 0.3s ease-in-out;
+}
+
+.second-navbar .right-group a:hover {
+  background: #155C60;
+  color: #fff !important;
+}
+
+/* Fix profile icon */
+.profile-button img {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+/* Profile wrap so it doesn't break the flex layout */
+.profile-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+/* Profile dropdown (works even without PHP) */
+.profile-dropdown {
+  position: absolute;
+  background: #fff;
+  width: 240px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  top: 100%;
+  left: -16px;
+  display: none;
+  z-index: 999;
+}
+
+/* JS toggles this class */
+.profile-wrapper.active .profile-dropdown {
+  display: block;
+}
