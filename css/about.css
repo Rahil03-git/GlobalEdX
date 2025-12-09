@@ -1,0 +1,1024 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+a{
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul,ol{
+  list-style: none;
+}
+h1,h2,h3,h4,h5,h6,p,nav,span,a,div,ul,li,footer{
+padding: 0;
+margin: 0;
+}
+/* header part css start */
+header {
+  background-color: #0C2132;
+  padding: 8px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: slideInHeader 1s ease-out forwards;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* 3D flip animation */
+@keyframes slideInHeader {
+  0% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+.welcome p {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+  animation: fadeInText 1.2s ease-out forwards;
+}
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.header_text {
+  font-style: italic;
+  float: right;
+  color: #ffffff;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  /* caret removed: no border-right */
+  width: 0;
+  animation: typingLoop 8s steps(35, end) infinite;
+}
+
+/* Typing + Erasing Loop Animation */
+@keyframes typingLoop {
+  0% {
+    width: 0;
+  }
+  40% {
+    width: 400px;
+  }
+  60% {
+    width: 400px;
+  }
+  100% {
+    width: 0;
+  }
+}
+/* header css part end */
+
+/*navbar css part start*/
+.navbar-nav .nav-item .nav-link{
+  color:black;
+ }
+.navbar-nav .nav-item .nav-link:hover{
+color:#007BFF;
+}
+
+
+.navbar-brand img{
+  max-width: 200%;
+  height: auto;
+  width: 100px; /* Adjust if  needed */
+  display: block;
+  border-radius: 10%;
+  margin: 0 auto;
+  border: 3px solid #155C60; /* Add this line for border */
+  }
+
+
+.navbar{
+background-color: black;
+}
+/* Reset default styles */
+body {
+margin: 0;
+font-weight: bold;
+font-family: Arial, sans-serif;
+overflow-x: hidden;
+}
+
+.navbar {
+display: flex;
+justify-content: space-around;
+align-items: center;
+background-color:#95CCCF !important;
+color: #0C2132; /* Dark background color */
+padding: 10px 0;
+z-index: 1100; /* Higher than the slide panel */
+position: relative; /* Required to apply z-index properly */
+}
+
+.menu-item {
+position: relative; /* For dropdown alignment */
+cursor: pointer;
+padding: 10px 20px;
+color: black;
+text-decoration: none;
+transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+background-color: #444;
+}
+
+/* Dropdown menu */
+.dreamcountry .dropdown-menu.show {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.dreamcountry .dropdown-menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  list-style: none !important;
+}
+
+.dreamcountry-option {
+  display: block !important;
+  width: 100% !important;
+  padding: 10px 16px !important;
+  box-sizing: border-box !important;
+  text-decoration: none !important;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold !important;
+  color: black !important;
+  white-space: nowrap !important;
+}
+
+.dreamcountry-option:hover {
+  background-color: #38B2AC !important;
+  color: white !important;
+}
+
+.dropdown-divider {
+  margin: 0.25rem 0 !important;
+  border: none !important;
+  border-top: 1px solid #ddd !important;
+}
+
+.dropdown-content div:hover {
+  background-color: #38B2AC;
+  color: black;
+  cursor: pointer;
+}
+
+
+
+/* the search form container */
+.search-form {
+  display: flex; 
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+  }
+  
+  /* the search input field */
+  .search-input {
+  padding: 10px 15px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  font-size: 16px;
+  width: 200px; 
+  transition: border-color 0.3s; 
+  }
+    .search-button {
+  padding: 10px 20px; 
+  color: white; 
+  border: none; 
+  border-radius: 20px; 
+  cursor: pointer; 
+  font-size: 20px; 
+  transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .search-button {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .search-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  
+  .search-button:active {
+  transform: scale(0.95); 
+  }
+
+/* 2nd navbar css part start */
+.second-navbar {
+  background-color: white;
+  color: black;
+  padding: 6px 0; /* Match padding closer to main navbar */
+  position: relative;
+  border-bottom: 1px solid #ddd; /* Optional: subtle separator line */
+  border-color: black;/* Explicit border color */
+  border-width: 1px;
+}
+
+
+.second-navbar .nav-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: right; /* Align items to the right */
+  margin: 0; /* Remove default margin */
+  align-items: center;
+  gap: 20px; /* Space between the items */
+}
+
+.second-navbar .nav-list li {
+  display: inline-block;
+}
+
+.second-navbar .nav-list a {
+  text-decoration: none; /* Remove underline */
+  color: black;
+  font-size: 16px; /* Text size */
+  padding: 15px 25px;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.second-navbar .nav-list a:hover {
+  background-color: #155C60; /* Slightly lighter shade on hover */
+}
+
+.second-navbar .nav-list a:active {
+  background-color: #444; /* Even darker shade when active */
+}
+/* 2nd navbar css part end */
+
+/*navbar css part end*/
+
+
+ /* Reset default styles */
+body {
+  margin: 0;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.about-banner {
+  background-image: url('../img/about.PNG');  /* Path to your new image */
+  background-repeat: no-repeat;
+  background-size: 1500px 1500px;
+  border-top-left-radius: 50%;  /* Set the background image size to 800px width and 400px height */
+  background-position: calc(100% + 600px) center;
+  position: relative;
+  z-index: 1;
+}
+
+
+.about-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.about-banner h2 {
+  font-weight: 600;
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: #000000; /* Black underline */
+}
+
+.about-banner ul {
+  padding-left: 20px;
+}
+
+.about-banner ul li {
+  margin-bottom: 8px;
+}
+
+.about-banner-image {
+  max-width: none;
+  width: 100%;
+  height: auto;
+  position: relative;
+  right: -120px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  overflow: hidden;
+}
+
+
+/* Lists spacing */
+.about-banner-section ul {
+  padding-left: 20px;
+}
+
+.about-banner-section ul li {
+  margin-bottom: 8px;
+}
+
+
+/* chatbot part starts */
+.chatbot-icon {
+  background-color: black;
+  border-radius: 30%; 
+  position: fixed;
+  bottom: 60px;
+  right: 30px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.chatbot-icon:hover {
+  transform: scale(1.1);
+}
+
+.chatbot-icon img {
+  width: 70px;   /* Increased image size inside circle */
+  height: 70px;
+  object-fit: contain;
+}
+
+/* chatbot part ends */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Overlay for popup */
+/* Make #faqOverlay a non-fullscreen positioned panel */
+/* FAQ Overlay (invisible backdrop to detect outside click) */
+/* FAQ Overlay */
+#faqOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 900px;
+  display: none;
+  z-index: 1050;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* FAQ Popup Panel */
+#faqPopup {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(100vh);
+  width: 90%;
+  max-width: 900px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1100;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Open state */
+#faqOverlay.open #faqPopup {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Optional scrollbar styling */
+#faqPopup::-webkit-scrollbar {
+  width: 6px;
+}
+#faqPopup::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+/* Close icon */
+#faqPopup i.fa-times {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+  z-index: 1200;
+}
+
+/* --- Modern Header Bar --- */
+.faq-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f4f8;
+  border-bottom: 1px solid #ddd;
+  padding: 12px 20px;
+  position: relative;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 20px;
+}
+
+/* Logo left */
+.faq-logo {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 3px solid #155C60;
+  border-radius: 30%;
+}
+
+.faq-logo img {
+  max-width: 90px;
+  height: auto;
+
+}
+
+/* Centered title */
+.faq-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Optional: FAQ Question/Answer basic styling (if needed) */
+.faq-item {
+  margin-bottom: 12px;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  background: #e9eff6;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.faq-question:hover {
+  background: #d7e3f0;
+}
+
+.faq-answer {
+  padding: 10px 16px;
+  background: #f9fbfd;
+  border-radius: 0 0 6px 6px;
+  margin-top: 4px;
+  display: none;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+.faq-header-bar {
+  display: flex;
+  align-items: center;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  background: #f0f4f8;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.faq-logo {
+  height: 40px;
+  margin-right: 12px;
+}
+
+.faq-header-bar h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question:hover {
+  background: #f9f9f9;
+}
+
+.faq-answer {
+  display: none;
+  padding: 12px 16px;
+  background: #f7f9fc;
+  border-top: 1px solid #ddd;
+}
+
+.faq-question .icon {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+/* notification panel start */
+
+#notificationBanner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 1000;
+  transition: width 0.3s, height 0.3s;
+}
+
+.banner-header {
+  background-color: #e0e0e0;
+  color: black;
+  padding: 2px;
+  font-weight: bold;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  padding-left: 15px;
+}
+
+.banner-controls span {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.banner-body1 {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers the image + text block */
+  padding: 25px;
+  color: #007BFF;
+  font-size: 18px;
+  text-align: left; /* allow text to flow next to the image */
+}
+
+.warning-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+}
+
+
+
+.banner-body {
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.banner-footer {
+  padding: 10px;
+  text-align: right;
+  font-size: 13px;
+}
+
+.banner-footer button {
+  margin-left: 10px;
+}
+
+#closeBtn {
+  font-size: 18px;
+  padding: 5px;
+  transition: transform 0.2s;
+}
+
+#closeBtn:hover{
+background-color: red;
+border-radius: 5px;
+}
+
+#cancelBtn, #okBtn {
+  background-color: #f0f0f0;
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+#cancelBtn:hover, #okBtn:hover {
+  background-color: #d7e3f0;
+  color: #007BFF;
+  transform: scale(1.05);
+}
+
+
+
+#notificationBanner button {
+  padding: 5px 12px;
+  border: 2px solid black;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+}
+
+#notificationBanner button:hover {
+  background-color: #f0f0f0;
+}
+/* notification panel end */
+
+/* footer css part start  */
+.secondary-footer {
+  background-color: #155C60;
+  padding: 8px 5px;
+  margin: 0; /* optional: removes outer spacing */
+  border: none; /* explicitly removes any border */
+  outline: none; /* removes focus outlines if any */
+  box-shadow: none; /* removes any shadow */
+}
+
+/* footer css part end  */
+
+<!-- js link start -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldZa5p5fC2G6KZs4Ks8lg2a44cId4jTkz76PKaX" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-cn7l7gDp0eyIG6mvEH16lAaqjZfGnirKwrjvJoaAqh6Ez4eZ0CtFLR69Zo5I2sT" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/custom.js"></script>
+<!-- js link end -->
+
+<script>
+// ✅ Detect login from PHP by checking if the buttons have class "unlocked"
+  function userIsLoggedIn() {
+    return document.querySelectorAll('.unlocked').length > 0;
+  }
+
+  
+
+  const slideBtn = document.getElementById('slideBtn'); 
+  const closeSlideBtn = document.getElementById('closeSlideBtn');
+  const slidePanel = document.getElementById('slidePanel');
+  const chatbotIcon = document.querySelector('.chatbot-icon');
+
+  if (chatbotIcon) {
+    chatbotIcon.addEventListener('click', (e) => {
+      if (!userIsLoggedIn()) {
+        e.preventDefault();
+        pendingLink = null;
+        showBanner();
+        return;
+      }
+      slidePanel.classList.add('open');
+    });
+  }
+
+  // Open sliding panel
+  if (slideBtn) {
+    slideBtn.addEventListener('click', () => {
+      slidePanel.classList.add('open');
+    });
+  }
+
+  // Close sliding panel
+  if (closeSlideBtn) {
+    closeSlideBtn.addEventListener('click', () => {
+      slidePanel.classList.remove('open');
+    });
+  }
+
+  // Dropdown handlers
+  function toggleCountryList(event) {
+    event.preventDefault();
+    const countryList = document.getElementById('country-list');
+    countryList.classList.toggle('d-none');
+  }
+
+  function toggleProgramList(event) {
+    event.preventDefault();
+    const programList = document.getElementById('program-list');
+    programList.classList.toggle('d-none');
+  }
+
+  function selectOption(type, value) {
+    if (type === 'country') {
+      document.getElementById('selected-country-label').textContent = value;
+    } else if (type === 'program') {
+      document.getElementById('selected-program-label').textContent = value;
+    }
+  }
+
+  const faqsOption = document.getElementById('faqsOption');
+  const faqOverlay = document.getElementById('faqOverlay');
+  const faqPopup = document.getElementById('faqPopup');
+  const carousel = document.getElementById('carouselExampleIndicators');
+  const closeFaqPanel = document.getElementById('closeFaqPanel');
+
+  function positionFaqOverBanner() {
+    const rect = carousel.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    faqPopup.style.top = `${rect.top + scrollTop + 20}px`;
+  }
+
+  function applyBlurToBackground() {
+    document.querySelectorAll('body > *:not(#faqOverlay)').forEach(el => {
+      el.style.filter = 'blur(4px)';
+      el.style.transition = 'filter 0.3s ease';
+    });
+  }
+
+  function removeBlurFromBackground() {
+    document.querySelectorAll('body > *:not(#faqOverlay)').forEach(el => {
+      el.style.filter = '';
+    });
+  }
+
+  function freezePage() {
+    document.body.style.overflow = 'hidden';
+    document.body.style.pointerEvents = 'none';
+    faqOverlay.style.pointerEvents = 'auto';
+    applyBlurToBackground();
+  }
+
+  function unfreezePage() {
+    document.body.style.overflow = '';
+    document.body.style.pointerEvents = '';
+    removeBlurFromBackground();
+  }
+
+  faqsOption.addEventListener('click', (e) => {
+    e.preventDefault();
+    positionFaqOverBanner();
+    faqOverlay.style.display = 'block';
+    void faqPopup.offsetWidth;
+    faqOverlay.classList.add('open');
+    freezePage();
+  });
+
+  faqOverlay.addEventListener('click', (e) => {
+    if (e.target === faqOverlay) {
+      faqOverlay.classList.remove('open');
+      unfreezePage();
+      setTimeout(() => {
+        faqOverlay.style.display = 'none';
+      }, 500);
+    }
+  });
+
+  closeFaqPanel.addEventListener('click', () => {
+    faqOverlay.classList.remove('open');
+    unfreezePage();
+    setTimeout(() => {
+      faqOverlay.style.display = 'none';
+    }, 500);
+  });
+
+  window.addEventListener('resize', () => {
+    if (faqOverlay.classList.contains('open')) {
+      positionFaqOverBanner();
+    }
+  });
+
+  // Example: toggle logged-in state
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  const userName = document.getElementById('userName');
+  const loginLink = document.getElementById('loginLink');
+
+  if (isLoggedIn) {
+      userName.style.display = 'inline';
+      loginLink.style.display = 'none';
+  } else {
+      userName.style.display = 'none';
+      loginLink.style.display = 'inline';
+  }
+
+  // ✅ FAQ Question-Answer Toggle with auto-close
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', function () {
+      const allAnswers = document.querySelectorAll('.faq-answer');
+      const answer = this.nextElementSibling;
+
+      // Close all answers first
+      allAnswers.forEach(ans => {
+        ans.style.display = 'none';
+      });
+
+      // Toggle current answer (open if was closed)
+      if (answer && (answer.style.display === 'none' || getComputedStyle(answer).display === 'none')) {
+        answer.style.display = 'block';
+      }
+    });
+  });
+
+  const banner = document.getElementById('notificationBanner');
+  const okBtn = document.getElementById('okBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+  const closeBtn = document.getElementById('closeBtn');
+  const minimizeBtn = document.getElementById('minimizeBtn');
+  const expandBtn = document.getElementById('expandBtn');
+  const body = banner.querySelector('.banner-body');
+  const footer = banner.querySelector('.banner-footer');
+
+  let pendingLink = null;
+  let isMinimized = false;
+  let isExpanded = false;
+
+  function disableOtherButtons() {
+    const clickableElements = document.querySelectorAll('a, button, [role="button"], [data-toggle], [onclick], .dropdown-toggle, .dropdown-menu');
+    clickableElements.forEach(el => {
+      if (!banner.contains(el)) {
+        el.dataset.originalPointerEvents = el.style.pointerEvents;
+        el.style.pointerEvents = 'none';
+        el.dataset.originalOpacity = el.style.opacity;
+        el.style.opacity = '0.5';
+      }
+    });
+  }
+
+  function enableOtherButtons() {
+    const clickableElements = document.querySelectorAll('a, button, [role="button"], [data-toggle], [onclick], .dropdown-toggle, .dropdown-menu');
+    clickableElements.forEach(el => {
+      if (el.dataset.originalPointerEvents !== undefined) {
+        el.style.pointerEvents = el.dataset.originalPointerEvents;
+        delete el.dataset.originalPointerEvents;
+      }
+      if (el.dataset.originalOpacity !== undefined) {
+        el.style.opacity = el.dataset.originalOpacity;
+        delete el.dataset.originalOpacity;
+      }
+    });
+  }
+
+  function applyBlurToBackgroundForBanner() {
+    document.querySelectorAll('body > *:not(#notificationBanner)').forEach(el => {
+      el.style.filter = 'blur(4px)';
+      el.style.transition = 'filter 0.3s ease';
+    });
+  }
+
+  function removeBlurFromBackgroundForBanner() {
+    document.querySelectorAll('body > *:not(#notificationBanner)').forEach(el => {
+      el.style.filter = '';
+    });
+  }
+
+  function showBanner() {
+    banner.style.display = 'block';
+    disableOtherButtons();
+    applyBlurToBackgroundForBanner();
+  }
+
+  function hideBanner() {
+    banner.style.display = 'none';
+    enableOtherButtons();
+    removeBlurFromBackgroundForBanner();
+  }
+
+  document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function (event) {
+      const linkText = this.textContent.trim();
+      if (!userIsLoggedIn() && (linkText.includes('Recommendation Engine') || linkText.includes('Get Offer Letter'))) {
+        event.preventDefault();
+        pendingLink = this.href;
+        showBanner();
+      }
+    });
+  });
+
+  okBtn.addEventListener('click', () => {
+    hideBanner();
+    pendingLink = null;
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    hideBanner();
+    pendingLink = null;
+  });
+
+  closeBtn.addEventListener('click', () => {
+    hideBanner();
+    pendingLink = null;
+  });
+
+  minimizeBtn.addEventListener('click', () => {
+    if (!isMinimized) {
+      body.style.display = 'none';
+      footer.style.display = 'none';
+      minimizeBtn.textContent = '+';
+      isMinimized = true;
+    } else {
+      body.style.display = 'block';
+      footer.style.display = 'block';
+      minimizeBtn.textContent = '–';
+      isMinimized = false;
+    }
+  });
+
+  expandBtn.addEventListener('click', () => {
+    if (!isExpanded) {
+      banner.style.width = '100%';
+      banner.style.height = '100%';
+      banner.style.top = '0';
+      banner.style.left = '0';
+      banner.style.transform = 'none';
+      expandBtn.textContent = '❐';
+      isExpanded = true;
+    } else {
+      banner.style.width = '400px';
+      banner.style.height = 'auto';
+      banner.style.top = '50%';
+      banner.style.left = '50%';
+      banner.style.transform = 'translate(-50%, -50%)';
+      expandBtn.textContent = '□';
+      isExpanded = false;
+    }
+  });
+
+  function redirectCountry(event) {
+    event.preventDefault();
+    const searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
+    if (searchInput) {
+      const countryMap = {
+        "australia": "desh.html",
+        "england": "desh2.html",
+        "germany": "desh3.html",
+        "usa": "desh5.html"
+      };
+      const url = countryMap[searchInput];
+      if (url) {
+        window.location.href = url;
+      } else {
+        alert("Country not found!");
+      }
+    } else {
+      alert("Please enter a country name.");
+    }
+  }
+
+</script>
+
+</body>
+</html>
