@@ -136,3 +136,192 @@ header {
   }
 }
 /* header css part end */
+
+/*navbar css part start*/
+.navbar-nav .nav-item .nav-link{
+  color:black;
+ }
+.navbar-nav .nav-item .nav-link:hover{
+color:#007BFF;
+}
+
+
+.navbar-brand img{
+  max-width: 200%;
+  height: auto;
+  width: 100px; /* Adjust if  needed */
+  display: block;
+  border-radius: 10%;
+  margin: 0 auto;
+  border: 3px solid #155C60; /* Add this line for border */
+  }
+
+
+.navbar{
+background-color: black;
+}
+/* Reset default styles */
+body {
+margin: 0;
+font-weight: bold;
+font-family: Arial, sans-serif;
+overflow-x: hidden;
+}
+
+.navbar {
+display: flex;
+justify-content: space-around;
+align-items: center;
+background-color:#95CCCF;
+color: #0C2132; /* Dark background color */
+padding: 10px 0;
+z-index: 1100; /* Higher than the slide panel */
+position: relative; /* Required to apply z-index properly */
+}
+
+.menu-item {
+position: relative; /* For dropdown alignment */
+cursor: pointer;
+padding: 10px 20px;
+color: black;
+text-decoration: none;
+transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+background-color: #444;
+}
+
+/* Dropdown menu */
+.dreamcountry .dropdown-menu.show {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.dreamcountry .dropdown-menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  list-style: none !important;
+}
+
+.dreamcountry-option {
+  display: block !important;
+  width: 100% !important;
+  padding: 10px 16px !important;
+  box-sizing: border-box !important;
+  text-decoration: none !important;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold !important;
+  color: black !important;
+  white-space: nowrap !important;
+}
+
+.dreamcountry-option:hover {
+  background-color: #38B2AC !important;
+  color: white !important;
+}
+
+.dropdown-divider {
+  margin: 0.25rem 0 !important;
+  border: none !important;
+  border-top: 1px solid #ddd !important;
+}
+
+.dropdown-content div:hover {
+  background-color: #38B2AC;
+  color: black;
+  cursor: pointer;
+}
+
+
+/* the search form container */
+.search-form {
+  display: flex; 
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+  }
+  
+  /* the search input field */
+  .search-input {
+  padding: 10px 15px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  font-size: 16px;
+  width: 200px; 
+  transition: border-color 0.3s; 
+  }
+  .search-button {
+  padding: 10px 20px; 
+  color: white; 
+  border: none; 
+  border-radius: 20px; 
+  cursor: pointer; 
+  font-size: 20px; 
+  transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .search-button {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .search-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  
+  .search-button:active {
+  transform: scale(0.95); 
+  }
+
+/* 2nd navbar css part start */
+.second-navbar {
+  background-color: white;
+  color: black;
+  padding: 6px 0; /* Match padding closer to main navbar */
+  position: relative;
+  border-bottom: 1px solid #ddd; /* Optional: subtle separator line */
+  border-color: black;/* Explicit border color */
+  border-width: 1px;
+}
+
+
+.second-navbar .nav-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: right; /* Align items to the right */
+  margin: 0; /* Remove default margin */
+  align-items: center;
+  gap: 20px; /* Space between the items */
+}
+
+.second-navbar .nav-list li {
+  display: inline-block;
+}
+
+.second-navbar .nav-list a {
+  text-decoration: none; /* Remove underline */
+  color: black;
+  font-size: 16px; /* Text size */
+  padding: 15px 25px;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.second-navbar .nav-list a:hover {
+  background-color: #155C60; /* Slightly lighter shade on hover */
+}
+
+.second-navbar .nav-list a:active {
+  background-color: #444; /* Even darker shade when active */
+}
+/* 2nd navbar css part end */
+
+/*navbar css part end*/
