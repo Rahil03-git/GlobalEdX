@@ -206,3 +206,150 @@ background-color: #444;
   width: 200px; 
   transition: border-color 0.3s; 
   }
+    .search-button {
+  padding: 10px 20px; 
+  color: white; 
+  border: none; 
+  border-radius: 20px; 
+  cursor: pointer; 
+  font-size: 20px; 
+  transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .search-button {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .search-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  
+  .search-button:active {
+  transform: scale(0.95); 
+  }
+
+/* 2nd navbar css part start */
+.second-navbar {
+  background-color: white;
+  color: black;
+  padding: 6px 0; /* Match padding closer to main navbar */
+  position: relative;
+  border-bottom: 1px solid #ddd; /* Optional: subtle separator line */
+  border-color: black;/* Explicit border color */
+  border-width: 1px;
+}
+
+
+.second-navbar .nav-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: right; /* Align items to the right */
+  margin: 0; /* Remove default margin */
+  align-items: center;
+  gap: 20px; /* Space between the items */
+}
+
+.second-navbar .nav-list li {
+  display: inline-block;
+}
+
+.second-navbar .nav-list a {
+  text-decoration: none; /* Remove underline */
+  color: black;
+  font-size: 16px; /* Text size */
+  padding: 15px 25px;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.second-navbar .nav-list a:hover {
+  background-color: #155C60; /* Slightly lighter shade on hover */
+}
+
+.second-navbar .nav-list a:active {
+  background-color: #444; /* Even darker shade when active */
+}
+/* 2nd navbar css part end */
+
+/*navbar css part end*/
+
+
+ /* Reset default styles */
+body {
+  margin: 0;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.about-banner {
+  background-image: url('../img/about.PNG');  /* Path to your new image */
+  background-repeat: no-repeat;
+  background-size: 1500px 1500px;
+  border-top-left-radius: 50%;  /* Set the background image size to 800px width and 400px height */
+  background-position: calc(100% + 600px) center;
+  position: relative;
+  z-index: 1;
+}
+
+
+.about-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.about-banner h2 {
+  font-weight: 600;
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: #000000; /* Black underline */
+}
+
+.about-banner ul {
+  padding-left: 20px;
+}
+
+.about-banner ul li {
+  margin-bottom: 8px;
+}
+
+.about-banner-image {
+  max-width: none;
+  width: 100%;
+  height: auto;
+  position: relative;
+  right: -120px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  overflow: hidden;
+}
+
+
+/* Lists spacing */
+.about-banner-section ul {
+  padding-left: 20px;
+}
+
+.about-banner-section ul li {
+  margin-bottom: 8px;
+}
