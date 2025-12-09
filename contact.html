@@ -477,3 +477,324 @@
 	  
 </footer>
 <!-- footer html part end  -->
+
+<!-- js link start -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldZa5p5fC2G6KZs4Ks8lg2a44cId4jTkz76PKaX" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-cn7l7gDp0eyIG6mvEH16lAaqjZfGnirKwrjvJoaAqh6Ez4eZ0CtFLR69Zo5I2sT" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/custom.js"></script>
+<!-- js link end -->
+
+<script>
+  
+  // ✅ Detect login from PHP by checking if the buttons have class "unlocked"
+  function userIsLoggedIn() {
+    return document.querySelectorAll('.unlocked').length > 0;
+  }
+
+  
+
+  const slideBtn = document.getElementById('slideBtn'); 
+  const closeSlideBtn = document.getElementById('closeSlideBtn');
+  const slidePanel = document.getElementById('slidePanel');
+  const chatbotIcon = document.querySelector('.chatbot-icon');
+
+  if (chatbotIcon) {
+    chatbotIcon.addEventListener('click', (e) => {
+      if (!userIsLoggedIn()) {
+        e.preventDefault();
+        pendingLink = null;
+        showBanner();
+        return;
+      }
+      slidePanel.classList.add('open');
+    });
+  }
+
+  // Open sliding panel
+  if (slideBtn) {
+    slideBtn.addEventListener('click', () => {
+      slidePanel.classList.add('open');
+    });
+  }
+
+  // Close sliding panel
+  if (closeSlideBtn) {
+    closeSlideBtn.addEventListener('click', () => {
+      slidePanel.classList.remove('open');
+    });
+  }
+
+  // Dropdown handlers
+  function toggleCountryList(event) {
+    event.preventDefault();
+    const countryList = document.getElementById('country-list');
+    countryList.classList.toggle('d-none');
+  }
+
+  function toggleProgramList(event) {
+    event.preventDefault();
+    const programList = document.getElementById('program-list');
+    programList.classList.toggle('d-none');
+  }
+
+  function selectOption(type, value) {
+    if (type === 'country') {
+      document.getElementById('selected-country-label').textContent = value;
+    } else if (type === 'program') {
+      document.getElementById('selected-program-label').textContent = value;
+    }
+  }
+
+  const faqsOption = document.getElementById('faqsOption');
+  const faqOverlay = document.getElementById('faqOverlay');
+  const faqPopup = document.getElementById('faqPopup');
+  const carousel = document.getElementById('carouselExampleIndicators');
+  const closeFaqPanel = document.getElementById('closeFaqPanel');
+
+  function positionFaqOverBanner() {
+    const rect = carousel.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    faqPopup.style.top = `${rect.top + scrollTop + 20}px`;
+  }
+
+  function applyBlurToBackground() {
+    document.querySelectorAll('body > *:not(#faqOverlay)').forEach(el => {
+      el.style.filter = 'blur(4px)';
+      el.style.transition = 'filter 0.3s ease';
+    });
+  }
+
+  function removeBlurFromBackground() {
+    document.querySelectorAll('body > *:not(#faqOverlay)').forEach(el => {
+      el.style.filter = '';
+    });
+  }
+
+  function freezePage() {
+    document.body.style.overflow = 'hidden';
+    document.body.style.pointerEvents = 'none';
+    faqOverlay.style.pointerEvents = 'auto';
+    applyBlurToBackground();
+  }
+
+  function unfreezePage() {
+    document.body.style.overflow = '';
+    document.body.style.pointerEvents = '';
+    removeBlurFromBackground();
+  }
+
+  faqsOption.addEventListener('click', (e) => {
+    e.preventDefault();
+    positionFaqOverBanner();
+    faqOverlay.style.display = 'block';
+    void faqPopup.offsetWidth;
+    faqOverlay.classList.add('open');
+    freezePage();
+  });
+
+  faqOverlay.addEventListener('click', (e) => {
+    if (e.target === faqOverlay) {
+      faqOverlay.classList.remove('open');
+      unfreezePage();
+      setTimeout(() => {
+        faqOverlay.style.display = 'none';
+      }, 500);
+    }
+  });
+
+  closeFaqPanel.addEventListener('click', () => {
+    faqOverlay.classList.remove('open');
+    unfreezePage();
+    setTimeout(() => {
+      faqOverlay.style.display = 'none';
+    }, 500);
+  });
+
+  window.addEventListener('resize', () => {
+    if (faqOverlay.classList.contains('open')) {
+      positionFaqOverBanner();
+    }
+  });
+
+  // Example: toggle logged-in state
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  const userName = document.getElementById('userName');
+  const loginLink = document.getElementById('loginLink');
+
+  if (isLoggedIn) {
+      userName.style.display = 'inline';
+      loginLink.style.display = 'none';
+  } else {
+      userName.style.display = 'none';
+      loginLink.style.display = 'inline';
+  }
+
+  // ✅ FAQ Question-Answer Toggle with auto-close
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', function () {
+      const allAnswers = document.querySelectorAll('.faq-answer');
+      const answer = this.nextElementSibling;
+
+      // Close all answers first
+      allAnswers.forEach(ans => {
+        ans.style.display = 'none';
+      });
+
+      // Toggle current answer (open if was closed)
+      if (answer && (answer.style.display === 'none' || getComputedStyle(answer).display === 'none')) {
+        answer.style.display = 'block';
+      }
+    });
+  });
+
+  const banner = document.getElementById('notificationBanner');
+  const okBtn = document.getElementById('okBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+  const closeBtn = document.getElementById('closeBtn');
+  const minimizeBtn = document.getElementById('minimizeBtn');
+  const expandBtn = document.getElementById('expandBtn');
+  const body = banner.querySelector('.banner-body');
+  const footer = banner.querySelector('.banner-footer');
+
+  let pendingLink = null;
+  let isMinimized = false;
+  let isExpanded = false;
+
+  function disableOtherButtons() {
+    const clickableElements = document.querySelectorAll('a, button, [role="button"], [data-toggle], [onclick], .dropdown-toggle, .dropdown-menu');
+    clickableElements.forEach(el => {
+      if (!banner.contains(el)) {
+        el.dataset.originalPointerEvents = el.style.pointerEvents;
+        el.style.pointerEvents = 'none';
+        el.dataset.originalOpacity = el.style.opacity;
+        el.style.opacity = '0.5';
+      }
+    });
+  }
+
+  function enableOtherButtons() {
+    const clickableElements = document.querySelectorAll('a, button, [role="button"], [data-toggle], [onclick], .dropdown-toggle, .dropdown-menu');
+    clickableElements.forEach(el => {
+      if (el.dataset.originalPointerEvents !== undefined) {
+        el.style.pointerEvents = el.dataset.originalPointerEvents;
+        delete el.dataset.originalPointerEvents;
+      }
+      if (el.dataset.originalOpacity !== undefined) {
+        el.style.opacity = el.dataset.originalOpacity;
+        delete el.dataset.originalOpacity;
+      }
+    });
+  }
+
+  function applyBlurToBackgroundForBanner() {
+    document.querySelectorAll('body > *:not(#notificationBanner)').forEach(el => {
+      el.style.filter = 'blur(4px)';
+      el.style.transition = 'filter 0.3s ease';
+    });
+  }
+
+  function removeBlurFromBackgroundForBanner() {
+    document.querySelectorAll('body > *:not(#notificationBanner)').forEach(el => {
+      el.style.filter = '';
+    });
+  }
+
+  function showBanner() {
+    banner.style.display = 'block';
+    disableOtherButtons();
+    applyBlurToBackgroundForBanner();
+  }
+
+  function hideBanner() {
+    banner.style.display = 'none';
+    enableOtherButtons();
+    removeBlurFromBackgroundForBanner();
+  }
+
+  document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function (event) {
+      const linkText = this.textContent.trim();
+      if (!userIsLoggedIn() && (linkText.includes('Recommendation Engine') || linkText.includes('Get Offer Letter'))) {
+        event.preventDefault();
+        pendingLink = this.href;
+        showBanner();
+      }
+    });
+  });
+
+  okBtn.addEventListener('click', () => {
+    hideBanner();
+    pendingLink = null;
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    hideBanner();
+    pendingLink = null;
+  });
+
+  closeBtn.addEventListener('click', () => {
+    hideBanner();
+    pendingLink = null;
+  });
+
+  minimizeBtn.addEventListener('click', () => {
+    if (!isMinimized) {
+      body.style.display = 'none';
+      footer.style.display = 'none';
+      minimizeBtn.textContent = '+';
+      isMinimized = true;
+    } else {
+      body.style.display = 'block';
+      footer.style.display = 'block';
+      minimizeBtn.textContent = '–';
+      isMinimized = false;
+    }
+  });
+
+  expandBtn.addEventListener('click', () => {
+    if (!isExpanded) {
+      banner.style.width = '100%';
+      banner.style.height = '100%';
+      banner.style.top = '0';
+      banner.style.left = '0';
+      banner.style.transform = 'none';
+      expandBtn.textContent = '❐';
+      isExpanded = true;
+    } else {
+      banner.style.width = '400px';
+      banner.style.height = 'auto';
+      banner.style.top = '50%';
+      banner.style.left = '50%';
+      banner.style.transform = 'translate(-50%, -50%)';
+      expandBtn.textContent = '□';
+      isExpanded = false;
+    }
+  });
+
+  function redirectCountry(event) {
+    event.preventDefault();
+    const searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
+    if (searchInput) {
+      const countryMap = {
+        "australia": "desh.html",
+        "england": "desh2.html",
+        "germany": "desh3.html",
+        "usa": "desh5.html"
+      };
+      const url = countryMap[searchInput];
+      if (url) {
+        window.location.href = url;
+      } else {
+        alert("Country not found!");
+      }
+    } else {
+      alert("Please enter a country name.");
+    }
+  }
+
+</script>
+
+</body>
+</html>
