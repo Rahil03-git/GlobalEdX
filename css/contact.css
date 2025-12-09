@@ -277,3 +277,162 @@ background-color: #444;
 /* 2nd navbar css part end */
 
 /*navbar css part end*/
+
+/* contact css part start */
+
+.contact-banner {
+  background: url('../img/contact.png') center/cover no-repeat;
+  width: 100%;
+}
+.contact-banner h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.contact-banner h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: orange;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+
+.contact-banner-overlay {
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  padding: 60px 0;
+}
+
+.contact-box {
+  background: rgba(26, 26, 26, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+.contact-box {
+  max-width: 50%; /* adjust as needed */
+  margin: 0 auto;
+  padding: 30px; /* overall padding inside the box */
+}
+.contact-box .col-lg-8 {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.contact-box .col-lg-4 {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  padding: 15px;
+}
+
+/* Member card image styling */
+.member-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+  margin-bottom: 6px;
+}
+
+.member-img:hover {
+  transform: scale(1.05);
+}
+
+.member-card {
+  margin: 5px; /* Adjust the value as needed for spacing */
+}
+
+.contact-box {
+  max-width: 80%;   /* Wider box */
+  margin: 0 auto;
+  padding: 30px;
+}
+
+/* Make each member card wider */
+.col-lg-2 {
+  flex: 0 0 22% !important;
+  max-width: 22% !important;
+}
+
+/* Bigger image box (more width, less height) */
+.member-img-wrapper {
+  width: 100%;
+  height: 150px;    /* increase height */
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+/* Images fit nicely */
+.member-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Name & email display naturally (not one letter per line) */
+.member-name {
+  font-size: 1rem;
+  white-space: normal;
+  word-break: normal;
+}
+
+.member-email {
+  font-size: 0.85rem;
+  white-space: normal;
+  word-break: break-word;
+  text-align: center;
+}
+
+
+/* Member text styling */
+.member-card h5 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.member-card p {
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+  word-break: break-word;
+}
+
+.member-card .social-icons i {
+  font-size: 16px;
+}
+
+
+/* Contact form input styling */
+.contact-form input,
+.contact-form textarea {
+  border: none !important;
+  border-bottom: 2px solid #ccc !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #fff !important;
+  outline: none;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #ccc;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-bottom-color: orange !important;
+  box-shadow: none !important;
+}
