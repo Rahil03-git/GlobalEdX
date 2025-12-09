@@ -325,3 +325,816 @@ background-color: #444;
 /* 2nd navbar css part end */
 
 /*navbar css part end*/
+
+/* banner css part start */
+/* Set height and fit for carousel images */
+/* General container */
+.container-fluid {
+  width: 100%;
+  padding: 0 20px;
+  padding-bottom: 30px;
+}
+
+/* Text section (left) */
+.col-md-5:first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 70px;
+  padding-right: 30px;
+  perspective: 1000px; /* Enable 3D animation */
+  animation: textFlipIn 1s ease-out forwards;
+  transform-style: preserve-3d;
+}
+
+/* 3D Flip-in animation */
+@keyframes textFlipIn {
+  0% {
+    transform: rotateY(-90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateY(0);
+    opacity: 1;
+  }
+}
+
+
+.col-md-5:first-child h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid transparent; /* Make caret invisible */
+  width: 0;
+  animation:
+    typingLoop 8s steps(40, end) infinite;
+}
+
+/* Typing + retyping animation */
+@keyframes typingLoop {
+  0% {
+    width: 0ch;
+  }
+  40% {
+    width: 30ch; /* Adjust this to match your actual text length */
+  }
+  60% {
+    width: 30ch;
+  }
+  100% {
+    width: 0ch;
+  }
+}
+
+
+
+.col-md-5:first-child p {
+  font-size: 20px;
+  line-height: 1.6;
+  animation: fadeInText 1s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+/* Smooth fade for paragraph */
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Carousel section (right) */
+.col-md-5.p-0 {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/* Carousel image */
+#carouselExampleIndicators {
+  width: 100%;
+}
+
+.carousel-item img {
+  width: 90%;
+  height: 500px;
+  object-fit: cover;
+  padding-top: 0px;
+}
+
+
+/* Optional: Adjust carousel indicators */
+.carousel-indicators [data-bs-target] {
+  background-color: #333;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1); /* Make arrows visible over any background */
+}
+/* Optional: style the text to wrap nicely */
+/* Target the left text column */
+.col-md-6:first-child {
+  height: 500px; /* match carousel height */
+  display: flex;
+  align-items: center;  /* vertically center content */
+  justify-content: center;
+}
+
+/* Narrow the width of the inner text block */
+.col-md-6:first-child > div {
+  max-width: 300px; /* adjust width as needed */
+  width: 100%;
+}
+
+/* Optional: style the text to wrap nicely */
+.col-md-6:first-child h2,
+.col-md-6:first-child p {
+  word-wrap: break-word;
+  text-align: left;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .col-md-6:first-child {
+      padding: 20px;
+      text-align: center;
+  }
+
+  .col-md-6:first-child h2 {
+      font-size: 24px;
+  }
+
+  .col-md-6:first-child p {
+      font-size: 14px;
+  }
+
+  .carousel-item img {
+      height: 400px;
+  }
+}
+
+
+/* banner css part end */
+
+/* chatbot part starts */
+.chatbot-icon {
+  background-color: black;
+  border-radius: 30%; 
+  position: fixed;
+  bottom: 60px;
+  right: 30px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.chatbot-icon:hover {
+  transform: scale(1.1);
+}
+
+.chatbot-icon img {
+  width: 70px;   /* Increased image size inside circle */
+  height: 70px;
+  object-fit: contain;
+}
+
+/* chatbot part ends */
+
+/* filter section css start */
+
+/* Filter part CSS - updated design covering full container */
+.filter-section {
+  display: flex;
+  width: 100%;
+  border: 1px solid #ccc;
+  overflow: hidden; /* rounded corners apply to inner buttons */
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding-bottom: 30px;
+}
+
+.filter-label,
+.filter-option {
+  flex: 1;
+  padding: 12px 0;
+  font-size: 14px;
+  text-align: center;
+  border-right: 1px solid #ccc;
+}
+
+.filter-label {
+  background-color: #e0e0e0;
+  font-weight: 600;
+  color: #333;
+  cursor: default;
+}
+
+.filter-option {
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 18px;
+}
+
+.filter-option:hover {
+  background-color: #38B2AC;
+  color: #fff;
+}
+
+.filter-section button:last-child {
+  border-right: none; /* remove right border on last button */
+}
+
+
+
+/* footer css part start  */
+.secondary-footer {
+  background-color: #155C60;
+  padding: 8px 5px;
+  margin: 0; /* optional: removes outer spacing */
+  border: none; /* explicitly removes any border */
+  outline: none; /* removes focus outlines if any */
+  box-shadow: none; /* removes any shadow */
+}
+
+/* footer css part end  */
+
+
+/* footer2 css part start */
+footer {
+background-color: #95CCCF;
+color: black;
+padding: 20px 10px; 
+margin: 0;
+}
+footer h3 {
+font-size: 1.3rem;
+font-weight: bold;
+margin-bottom: 15px;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer_text p {
+margin: 5px 0;
+margin-right: 10px 0;
+font-size: 1.3rem;
+font-family: 'Times New Roman', Times, serif;
+}
+.footer_links {
+text-align: center; /* Center aligns the "Links" column */
+}
+.footer_links ul {
+list-style: none;
+padding: 0;
+}
+
+.footer_links ul li {
+margin-bottom: 10px;
+}
+
+.footer_links ul li a {
+color: black;
+text-decoration: none;
+font-size: 1.3rem;
+font-family: 'Times New Roman', Times, serif;
+}
+
+.footer_links ul li a:hover {
+text-decoration: underline;
+}
+
+.footer_social a {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between icon and text */
+  text-decoration: none;
+  color: Black; /* Adjust to your theme */
+  margin-bottom: 12px; /* space between each row */
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+
+.footer_social a:hover {
+color: black; 
+}
+.footer_social{
+float: right;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+}
+
+.footer-bottom-left .copyright {
+  color: #0000ff; /* Blue link */
+  text-decoration: none;
+}
+
+.footer-bottom-left .copyright:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom-right a {
+  color: black;
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+ .footer-bottom-right a:hover {
+  text-decoration: underline;
+} 
+
+.footer-bottom-right span {
+  font-weight: bold;
+}
+ /* footer css part end */
+
+  </style>
+</head>
+<body>
+	<!-- header part html start -->
+	<header>
+	<div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="welcome">
+					<p>Welcome to GlobalEdX</p>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="header_text">
+					<p>Your Gateway to Smarter Global Education!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+	 <!-- header part html end -->
+
+<!-- Navbar HTML part start -->
+<nav class="navbar navbar-expand-lg">
+	<div class="container">
+	  <a class="navbar-brand" href="#">
+		<img src="img/logo.png.png" alt="GlobalEdX Logo">
+	  </a>
+	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		  <li class="nav-item">
+			<a class="nav-link " aria-current="page" href="index.html">Home</a>
+		  </li>
+           <!-- Dream Countries Dropdown -->
+<li class="nav-item dropdown" id="dreamDropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dream Countries
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dreamcountry-option" href="desh.html"><b>Australia</b></a></li>
+    <li><a class="dreamcountry-option" href="desh3.html"><b>Germany</b></a></li>
+    <li><a class="dreamcountry-option" href="desh5.html"><b>United States of America</b></a></li>
+    <li><hr class="dropdown-divider"></li>
+  </ul>
+</li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Recommendation Engine</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Get Offer Letter</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="contact.html">Contacts</a>
+		  </li>
+		  
+
+				<li><hr class="dropdown-divider"></li>
+			</ul>
+		<!-- Search Form -->
+        <div id="suggestions" class="suggestions"></div>
+<form class="d-flex" role="search" method="get" action="search_aus.php" onsubmit="return validateSearch()">
+    <input id="searchInput" name="search_query" class="search-input" type="search" placeholder="Search for universities" aria-label="Search" required>
+    <button class="search-button" type="submit">
+        <img src="img/search.png" alt="Search" class="search-icon">
+    </button>
+</form>	  
+	  </div>
+	</div>
+  </nav>
+ <!-- Navbar HTML part end  -->
+
+<!-- 2nd navbar html start-->
+<nav class="second-navbar">
+	<div class="container">
+	  <ul class="nav-list">
+		<!-- LEFT SIDE -->
+		<li class="left-group">
+		<button class="home-button" onclick="location.href='index.html';">
+			<img src="img/h1.png" alt="Home">
+		</button>
+		  <a href="about_aus.php">About</a>
+		  <a href="uni_aus.php">Universities</a>
+		</li>
+  
+		<!-- RIGHT SIDE -->
+		<li class="right-group">
+		  <a href="">FAQs</a>
+		  <a href="#">Log in / Sign up</a>
+		  <button class="profile-button">
+			<img src="img/p1.png" alt="Profile">
+		  </button>
+		</li>
+	  </ul>
+	</div>
+  </nav>
+
+  <!-- 2nd navbar html end-->
+
+ <!-- Carousel Start -->
+ <div class="container-fluid mt-0">
+	<div class="row">
+	  <!-- Left text section -->
+	  <div class="col-md-5">
+		<div>
+		  <h2><b>“G'day and welcome to Australia,</b></h2>
+		  <p>
+			a Southern Hemisphere gem, where stunning coastlines, vibrant cities, and a rich cultural mix meet a world-class education system and high-quality living, all powered by the Australian Dollar (AUD)."
+		  </p>
+		</div>
+	  </div>
+  
+	  <!-- Right carousel section -->
+	  <div class="col-md-7 p-0">
+		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+		  <div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		  </div>
+		  <div class="carousel-inner">
+			<div class="carousel-item active" data-bs-interval="2000">
+			  <img src="img/aus1.png" class="d-block w-100" alt="Banner 1">
+			</div>
+			<div class="carousel-item" data-bs-interval="2000">
+			  <img src="img/aus2.jpg" class="d-block w-100" alt="Banner 2">
+			</div>
+			<div class="carousel-item" data-bs-interval="2000">
+			  <img src="img/aus3.jpg" class="d-block w-100" alt="Banner 3">
+			</div>
+		  </div>
+		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		  </button>
+		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		  </button>
+		</div>
+	  </div>
+	</div>
+  </div>
+  
+  
+  <!-- Carousel End -->		
+
+    <!-- Chatbot Icon -->
+<!-- <a href="#" class="chatbot-icon" title="Chat with us">
+	<img src="img/CB.png" alt="Chatbot"></a> -->
+
+   <!-- filter option html start -->
+     
+   <!-- <div class="container mt-4"> -->
+	<div class="row">
+	  <div class="col-12">
+		<div class="filter-section">
+<button class="filter-label">FILTER BY</button>
+<button class="filter-option" onclick="location.href='program_aus.php'">Program Wise</button>
+<button class="filter-option" onclick="location.href='tuitionfee_aus.php'">Tuition Fees Wise</button>
+<button class="filter-option" onclick="location.href='rank_aus.php'">World Ranking Wise</button>
+		</div>
+	  </div>
+	</div>
+  <!-- </div> -->
+  
+  <!-- filter option html end --> 
+
+<!-- Notification Banner -->
+<div id="notificationBanner">
+	<div class="banner-header">
+	  Access Required! 🔒
+	  <span class="banner-controls" style="float: right; cursor: pointer;">
+		<span id="minimizeBtn" title="Minimize" style="margin-right: 10px;">–</span>
+		<span id="expandBtn" title="Expand" style="margin-right: 10px;">□</span>
+		<span id="closeBtn">&#x274C;</span>
+	  </span>
+	</div>
+	<div class="banner-body">
+	  You need to log in or sign up to access this feature, thank you!
+	</div>
+	<div class="banner-footer">
+	  <button id="cancelBtn">Cancel</button>
+	  <button id="okBtn">Okay</button>
+	</div>
+  </div>
+
+
+      <!-- Main Content -->
+    <div id="banner">
+         <div class="banner_overlay">
+                <div class="container mt-4">
+                    <div class="banner_content">
+                    <h2 class="text-center" style="font-family: Times New Roman, Times, serif; font-size: 30px; font-weight: bold; text-decoration: underline; display: inline-block; white-space: nowrap; overflow: hidden; animation: typing 6s steps(20, end) infinite, flipIn 1.2s ease-out forwards; transform-origin: top; margin: 0 auto; text-align: center;">
+  About AUSTRALIA
+</h2>
+                        <?php
+if ($result->num_rows > 0) {
+    echo '<div style="font-family: Times New Roman, Times, serif; font-size: 20px; line-height: 1.6; color: #333;">';  // Inline CSS for styling
+
+    // Output data of each row
+    while ($row = $result->fetch_assoc()) {
+        echo "<p><h4 style='font-size: 22px; font-weight: bold; color: #007BFF;'><strong>Overview:</strong></h4> " . htmlspecialchars($row['overview']) . "</p><br>";
+        echo "<p><h4 style='font-size: 22px; font-weight: bold; color: #007BFF;'><strong>Currency:</strong></h4> " . htmlspecialchars($row['currency']) . "</p><br>";
+        echo "<p><h4 style='font-size: 22px; font-weight: bold; color: #007BFF;'><strong>Location:</strong></h4> " . htmlspecialchars($row['location']) . "</p><br>";
+        echo "<p><h4 style='font-size: 22px; font-weight: bold; color: #007BFF;'><strong>Social Status:</strong></h4> " . htmlspecialchars($row['social_status']) . "</p><br>";
+        echo "<p><h4 style='font-size: 22px; font-weight: bold; color: #007BFF;'><strong>Educational Status:</strong></h4> " . htmlspecialchars($row['educational_status']) . "</p><br>";
+        echo "<p><h4 style='font-size: 22px; font-weight: bold; color: #007BFF;'><strong>Cultural Status:</strong></h4> " . htmlspecialchars($row['cultural_status']) . "</p><br>";
+        echo "<p><h4 style='font-size: 22px; font-weight: bold; color: #007BFF;'><strong>Living Style:</strong></h4> " . htmlspecialchars($row['living_style']) . "</p><br>";
+    }
+
+    echo '</div>';  // End of styled div
+} else {
+    echo "<p>No information found for AUSTRALIA.</p>";
+}
+
+                        // Close the connection
+                        $conn->close();
+                        ?>
+                    </div>
+                </div>
+        </div>
+    </div>   
+  
+
+ <!-- footer line starts -->
+ <div class="secondary-footer">
+	<!-- your content -->
+  </div>
+  
+  <!-- footer line ends -->
+
+<!-- footer2 html part start  -->
+ <footer>
+	<div class="container">
+		<div class="row">
+			<!-- 1st Column: Company Info -->
+			<div class="col-md-4">
+				<div class="footer_text">
+					<h3><b><u>ADDRESS</u></b></h3>
+					<p>United International University, UIU Permanent Campus</p>
+					<p>United City, Madani Avenue</p>
+					<p>Notun Bazar, 100 - Feet, Dhaka - 1212</p>
+				</div>
+			</div>
+			
+			<!-- 2nd Column: Links -->
+			<div class="col-md-4">
+				<div class="footer_links">
+					<h3><b><u>USEFUL LINKS</u></b></h3>
+					<ul>
+						<li><a href="about.html">About GlobalEdX</a></li>
+						<li><a href="#">Blogs</a></li>
+						<li><a href="#">Success Stories</a></li>
+						<li><a href="#">Terms & Conditions</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- 3rd Column: Social Media -->
+			<div class="col-md-4">
+				<div class="footer_social">
+				  <h3><b><u>FOLLOW US</u></b></h3>
+				  <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+				  <a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+				  <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+				  <a href="#"><i class="fas fa-envelope"></i> Email</a>
+				</div>
+			  </div>
+		</div>
+	</div>
+
+	<div class="footer-bottom">
+		<div class="footer-bottom-left">
+		  <a href="#" class="copyright">@Copyright</a>
+		</div>
+		<div class="footer-bottom-right">
+		  <span>||</span>
+		  <a href="#">Data Privacy Statement</a>
+		  <span>||</span>
+		  <a href="#">Cookies</a>
+		  <span>||</span>
+		</div>
+	  </div>
+	  
+	  
+</footer>
+<!-- footer html part end  -->
+  
+
+<!-- js link start -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldZa5p5fC2G6KZs4Ks8lg2a44cId4jTkz76PKaX" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-cn7l7gDp0eyIG6mvEH16lAaqjZfGnirKwrjvJoaAqh6Ez4eZ0CtFLR69Zo5I2sT" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/custom.js"></script>
+<!-- js link end -->
+
+  <script>
+// JavaScript for Sliding Panel
+const slideBtn = document.getElementById('slideBtn'); // Ensure a button with this ID exists
+const closeSlideBtn = document.getElementById('closeSlideBtn');
+const slidePanel = document.getElementById('slidePanel');
+
+// Open the sliding panel
+if (slideBtn) {
+  slideBtn.addEventListener('click', () => {
+    slidePanel.classList.add('open');
+  });
+}
+
+// Close the sliding panel
+if (closeSlideBtn) {
+  closeSlideBtn.addEventListener('click', () => {
+    slidePanel.classList.remove('open');
+  });
+}
+
+// dropdown js 
+
+function toggleCountryList(event) {
+      event.preventDefault();
+      const countryList = document.getElementById('country-list');
+      countryList.classList.toggle('d-none');
+    }
+
+    // Toggle the visibility of the program list
+    function toggleProgramList(event) {
+      event.preventDefault();
+      const programList = document.getElementById('program-list');
+      programList.classList.toggle('d-none');
+    }
+
+    // Handle selection and update the label inside the dropdown
+    function selectOption(type, value) {
+      if (type === 'country') {
+        // Update the country label to the selected option
+        const countryLabel = document.getElementById('selected-country-label');
+        countryLabel.textContent = value;
+      } else if (type === 'program') {
+        // Update the program label to the selected option
+        const programLabel = document.getElementById('selected-program-label');
+        programLabel.textContent = value;
+      }
+    }
+
+const faqsOption = document.getElementById('faqsOption');
+const faqOverlay = document.getElementById('faqOverlay');
+const faqPopup = document.getElementById('faqPopup');
+const carousel = document.getElementById('carouselExampleIndicators');
+const closeFaqPanel = document.getElementById('closeFaqPanel');
+
+// Function to position FAQ popup over banner (without affecting anything else)
+function positionFaqOverBanner() {
+  const rect = carousel.getBoundingClientRect();
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const bannerTop = rect.top + scrollTop;
+  faqPopup.style.top = `${bannerTop + 20}px`; // slightly below banner top for spacing
+}
+
+// Open FAQ panel
+faqsOption.addEventListener('click', (e) => {
+  e.preventDefault();
+  positionFaqOverBanner();
+  faqOverlay.style.display = 'block';
+  // Trigger reflow to allow animation
+  void faqPopup.offsetWidth;
+  faqOverlay.classList.add('open');
+});
+
+// Close panel when clicking outside
+faqOverlay.addEventListener('click', (e) => {
+  if (e.target === faqOverlay) {
+    faqOverlay.classList.remove('open');
+    setTimeout(() => {
+      faqOverlay.style.display = 'none';
+    }, 500); // Match transition duration
+  }
+});
+
+// Close panel when clicking the close "X" icon
+closeFaqPanel.addEventListener('click', () => {
+  faqOverlay.classList.remove('open');
+  setTimeout(() => {
+    faqOverlay.style.display = 'none';
+  }, 500); // Match transition duration
+});
+
+// Reposition on resize (optional)
+window.addEventListener('resize', () => {
+  if (faqOverlay.classList.contains('open')) {
+    positionFaqOverBanner();
+  }
+});
+
+// Toggle FAQ answers when questions are clicked
+const faqQuestions = document.querySelectorAll('.faq-question'); // Collect all FAQ questions
+
+faqQuestions.forEach((question) => {
+  question.addEventListener('click', function () {
+    const answer = this.nextElementSibling; // Get the corresponding answer div
+
+    // Close all other answers before opening the clicked one
+    document.querySelectorAll('.faq-answer').forEach((ans) => {
+      if (ans !== answer) {
+        ans.classList.remove('open'); // Collapse other answers
+      }
+    });
+
+    // Toggle the open class on the clicked answer
+    answer.classList.toggle('open');
+  });
+});
+
+
+// const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector('.icon');
+
+    // Close other open answers
+    document.querySelectorAll('.faq-answer').forEach((el) => {
+      if (el !== answer) {
+        el.style.display = 'none';
+        el.previousElementSibling.querySelector('.icon').textContent = '+';
+      }
+    });
+
+    // Toggle current answer
+    if (answer.style.display === 'block') {
+      answer.style.display = 'none';
+      icon.textContent = '+';
+    } else {
+      answer.style.display = 'block';
+      icon.textContent = '−';
+    }
+  });
+});
+
+function redirectCountry(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get the search query from the input field
+    const searchInput = document.getElementById("searchInput").value.trim();
+
+    // If the search input is empty, do nothing
+    if (searchInput === "") {
+        alert("Please enter a university name to search.");
+        return;
+    }
+
+    // Add a timestamp to prevent caching of the search result
+    const timestamp = new Date().getTime();
+
+    // Redirect to the search page with the search term and timestamp
+    window.location.href = `search_aus.php?search_query=${encodeURIComponent(searchInput)}&t=${timestamp}`;
+
+    // Clear the input field for the next search
+    document.getElementById("searchInput").value = "";
+}
+
+  </script>
+</body>
+</html>
+ 
+
+     
