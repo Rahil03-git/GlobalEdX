@@ -34,9 +34,7 @@ $query = "SELECT
 $result = $conn->query($query);
 ?>
 
-// Execute the query
-$result = $conn->query($query);
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
