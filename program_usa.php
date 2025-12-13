@@ -1140,7 +1140,7 @@ $conn->close();
 				<div class="footer_links">
 					<h3><b><u>USEFUL LINKS</u></b></h3>
 					<ul>
-						<li><a href="about.php">About EdAcademix</a></li>
+						<li><a href="about.php">About GlobalEdX</a></li>
 						<li><a href="#">Blogs</a></li>
 						<li><a href="#">Success Stories</a></li>
             <li><a href="#">Terms & Conditions</a></li>
