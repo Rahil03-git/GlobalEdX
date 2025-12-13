@@ -849,3 +849,202 @@ float: right;
 
   </style>
 </head>
+<body>
+	<!-- header part html start -->
+	<header>
+	<div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="welcome">
+					<p>Welcome to GlobalEdX</p>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="header_text">
+					<p>Your Gateway to Smarter Global Education!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+	 <!-- header part html end -->
+
+<!-- Navbar HTML part start -->
+<nav class="navbar navbar-expand-lg">
+	<div class="container">
+	  <a class="navbar-brand" href="#">
+		<img src="img/logo.png.png" alt="GlobalEdX Logo">
+	  </a>
+	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		  <li class="nav-item">
+			<a class="nav-link " aria-current="page" href="index.html">Home</a>
+		  </li>
+           <!-- Dream Countries Dropdown -->
+<li class="nav-item dropdown" id="dreamDropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dream Countries
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dreamcountry-option" href="desh.html"><b>Australia</b></a></li>
+    <li><a class="dreamcountry-option" href="desh3.html"><b>Germany</b></a></li>
+    <li><a class="dreamcountry-option" href="desh5.html"><b>United States of America</b></a></li>
+    <li><hr class="dropdown-divider"></li>
+  </ul>
+</li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Recommendation Engine</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Get Offer Letter</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="contact.html">Contacts</a>
+		  </li>
+		  
+
+				<li><hr class="dropdown-divider"></li>
+			</ul>
+		<!-- Search Form -->
+        <div id="suggestions" class="suggestions"></div>
+<form class="d-flex" role="search" method="get" action="search_aus.php" onsubmit="return validateSearch()">
+    <input id="searchInput" name="search_query" class="search-input" type="search" placeholder="Search for universities" aria-label="Search" required>
+    <button class="search-button" type="submit">
+        <img src="img/search.png" alt="Search" class="search-icon">
+    </button>
+</form>	  
+	  </div>
+	</div>
+  </nav>
+ <!-- Navbar HTML part end  -->
+
+<!-- 2nd navbar html start-->
+<nav class="second-navbar">
+	<div class="container">
+	  <ul class="nav-list">
+		<!-- LEFT SIDE -->
+		<li class="left-group">
+		<button class="home-button" onclick="location.href='index.html';">
+			<img src="img/h1.png" alt="Home">
+		</button>
+		  <a href="about_usa.php">About</a>
+		  <a href="uni_usa.php">Universities</a>
+		</li>
+  
+		<!-- RIGHT SIDE -->
+		<li class="right-group">
+		  <a href="#">FAQs</a>
+		  <a href="#">Log in / Sign up</a>
+		  <button class="profile-button">
+			<img src="img/p1.png" alt="Profile">
+		  </button>
+		</li>
+	  </ul>
+	</div>
+  </nav>
+
+  <!-- 2nd navbar html end-->
+
+ <!-- Carousel Start -->
+ <div class="container-fluid mt-0">
+	<div class="row">
+	  <!-- Left text section -->
+	  <div class="col-md-5">
+		<div>
+		  <h2><b>“Hello and welcome to the USA,</b></h2>
+		  <p>
+			a land of endless possibilities spanning North America, where vast landscapes meet iconic cities, offering a dynamic lifestyle, a top-ranked education system fostering innovation, the US Dollar (USD), and a vibrant cultural tapestry of music, arts, and global influences."
+		  </p>
+		</div>
+	  </div>
+  
+	  <!-- Right carousel section -->
+	  <div class="col-md-7 p-0">
+		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+		  <div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		  </div>
+		  <div class="carousel-inner">
+			<div class="carousel-item active" data-bs-interval="2000">
+			  <img src="img/usa1.jpg" class="d-block w-100" alt="Banner 1">
+			</div>
+			<div class="carousel-item" data-bs-interval="2000">
+			  <img src="img/usa2.jpeg" class="d-block w-100" alt="Banner 2">
+			</div>
+			<div class="carousel-item" data-bs-interval="2000">
+			  <img src="img/usa3.jpg" class="d-block w-100" alt="Banner 3">
+			</div>
+		  </div>
+		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		  </button>
+		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		  </button>
+		</div>
+	  </div>
+	</div>
+  </div>
+  
+  
+  <!-- Carousel End -->		
+
+
+    <!-- Chatbot Icon -->
+<!-- <a href="#" class="chatbot-icon" title="Chat with us">
+	<img src="img/CB.png" alt="Chatbot"></a> -->
+
+ <!-- filter option html start -->
+     
+   <!-- <div class="container mt-4"> -->
+   <div class="row">
+	  <div class="col-12">
+		<div class="filter-section">
+<button class="filter-label">FILTER BY</button>
+<button class="filter-option" onclick="location.href='program_usa.php'">Program Wise</button>
+<button class="filter-option" onclick="location.href='tuitionfee_usa.php'">Tuition Fees Wise</button>
+<button class="filter-option" onclick="location.href='rank_usa.php'">World Ranking Wise</button>
+		</div>
+	  </div>
+	</div>
+  <!-- </div> -->
+  
+  <!-- filter option html end --> 
+
+  <!-- Notification Banner -->
+<div id="notificationBanner">
+	<div class="banner-header">
+	  Access Required! 🔒
+	  <span class="banner-controls" style="float: right; cursor: pointer;">
+		<span id="minimizeBtn" title="Minimize" style="margin-right: 10px;">–</span>
+		<span id="expandBtn" title="Expand" style="margin-right: 10px;">□</span>
+		<span id="closeBtn">&#x274C;</span>
+	  </span>
+	</div>
+	<div class="banner-body">
+	  You need to log in or sign up to access this feature, thank you!
+	</div>
+	<div class="banner-footer">
+	  <button id="cancelBtn">Cancel</button>
+	  <button id="okBtn">Okay</button>
+	</div>
+  </div>
+
+
+<!-- Main Content -->
+<div id="banner">
+    <div class="banner_overlay">
+        <div class="container mt-5">
+            <div class="banner_content">
+<h2 class="text-center" style="font-family: Times New Roman, Times, serif; font-size: 30px; font-weight: bold; text-decoration: underline; display: inline-block; white-space: nowrap; overflow: hidden; animation: typing 6s steps(20, end) infinite, flipIn 1.2s ease-out forwards; transform-origin: top; margin: 0 auto; text-align: center;">
+  Program Based Universities
+</h2>
