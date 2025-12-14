@@ -1116,3 +1116,302 @@ $conn->close();
 ?>
 
 
+<!-- footer line starts -->
+<div class="secondary-footer">
+	<!-- your content -->
+  </div>
+  
+  <!-- footer line ends -->
+
+<!-- footer2 html part start  -->
+ <footer>
+	<div class="container">
+		<div class="row">
+			<!-- 1st Column: Company Info -->
+			<div class="col-md-4">
+				<div class="footer_text">
+					<h3><b><u>ADDRESS</u></b></h3>
+					<p>United International University, UIU Permanent Campus</p>
+					<p>United City, Madani Avenue</p>
+					<p>Notun Bazar, 100 - Feet, Dhaka - 1212</p>
+				</div>
+			</div>
+			
+			<!-- 2nd Column: Links -->
+			<div class="col-md-4">
+				<div class="footer_links">
+					<h3><b><u>USEFUL LINKS</u></b></h3>
+					<ul>
+						<li><a href="about.php">About GlobalEdX</a></li>
+						<li><a href="#">Blogs</a></li>
+						<li><a href="#">Success Stories</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- 3rd Column: Social Media -->
+			<div class="col-md-4">
+				<div class="footer_social">
+				  <h3><b><u>FOLLOW US</u></b></h3>
+				  <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+				  <a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+				  <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+				  <a href="#"><i class="fas fa-envelope"></i> Email</a>
+				</div>
+			  </div>
+		</div>
+	</div>
+
+	<div class="footer-bottom">
+		<div class="footer-bottom-left">
+		  <a href="#" class="copyright">@Copyright</a>
+		</div>
+		<div class="footer-bottom-right">
+		  <span>||</span>
+		  <a href="#">Data Privacy Statement</a>
+		  <span>||</span>
+		  <a href="#">Cookies</a>
+		  <span>||</span>
+		</div>
+	  </div>
+	  
+	  
+</footer>
+<!-- footer html part end  -->
+
+
+     <!-- js link start -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldZa5p5fC2G6KZs4Ks8lg2a44cId4jTkz76PKaX" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-cn7l7gDp0eyIG6mvEH16lAaqjZfGnirKwrjvJoaAqh6Ez4eZ0CtFLR69Zo5I2sT" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/custom.js"></script>
+<!-- js link end -->
+
+  <script>
+// JavaScript for Sliding Panel
+const slideBtn = document.getElementById('slideBtn'); // Ensure a button with this ID exists
+const closeSlideBtn = document.getElementById('closeSlideBtn');
+const slidePanel = document.getElementById('slidePanel');
+
+// Open the sliding panel
+if (slideBtn) {
+  slideBtn.addEventListener('click', () => {
+    slidePanel.classList.add('open');
+  });
+}
+
+// Close the sliding panel
+if (closeSlideBtn) {
+  closeSlideBtn.addEventListener('click', () => {
+    slidePanel.classList.remove('open');
+  });
+}
+
+// dropdown js 
+
+function toggleCountryList(event) {
+      event.preventDefault();
+      const countryList = document.getElementById('country-list');
+      countryList.classList.toggle('d-none');
+    }
+
+    // Toggle the visibility of the program list
+    function toggleProgramList(event) {
+      event.preventDefault();
+      const programList = document.getElementById('program-list');
+      programList.classList.toggle('d-none');
+    }
+
+    // Handle selection and update the label inside the dropdown
+    function selectOption(type, value) {
+      if (type === 'country') {
+        // Update the country label to the selected option
+        const countryLabel = document.getElementById('selected-country-label');
+        countryLabel.textContent = value;
+      } else if (type === 'program') {
+        // Update the program label to the selected option
+        const programLabel = document.getElementById('selected-program-label');
+        programLabel.textContent = value;
+      }
+    }
+
+const faqsOption = document.getElementById('faqsOption');
+const faqOverlay = document.getElementById('faqOverlay');
+const faqPopup = document.getElementById('faqPopup');
+const carousel = document.getElementById('carouselExampleIndicators');
+const closeFaqPanel = document.getElementById('closeFaqPanel');
+
+// Function to position FAQ popup over banner (without affecting anything else)
+function positionFaqOverBanner() {
+  const rect = carousel.getBoundingClientRect();
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const bannerTop = rect.top + scrollTop;
+  faqPopup.style.top = ${bannerTop + 20}px; // slightly below banner top for spacing
+}
+
+// Open FAQ panel
+faqsOption.addEventListener('click', (e) => {
+  e.preventDefault();
+  positionFaqOverBanner();
+  faqOverlay.style.display = 'block';
+  // Trigger reflow to allow animation
+  void faqPopup.offsetWidth;
+  faqOverlay.classList.add('open');
+});
+
+// Close panel when clicking outside
+faqOverlay.addEventListener('click', (e) => {
+  if (e.target === faqOverlay) {
+    faqOverlay.classList.remove('open');
+    setTimeout(() => {
+      faqOverlay.style.display = 'none';
+    }, 500); // Match transition duration
+  }
+});
+
+// Close panel when clicking the close "X" icon
+closeFaqPanel.addEventListener('click', () => {
+  faqOverlay.classList.remove('open');
+  setTimeout(() => {
+    faqOverlay.style.display = 'none';
+  }, 500); // Match transition duration
+});
+
+// Reposition on resize (optional)
+window.addEventListener('resize', () => {
+  if (faqOverlay.classList.contains('open')) {
+    positionFaqOverBanner();
+  }
+});
+
+// Toggle FAQ answers when questions are clicked
+const faqQuestions = document.querySelectorAll('.faq-question'); // Collect all FAQ questions
+
+faqQuestions.forEach((question) => {
+  question.addEventListener('click', function () {
+    const answer = this.nextElementSibling; // Get the corresponding answer div
+
+    // Close all other answers before opening the clicked one
+    document.querySelectorAll('.faq-answer').forEach((ans) => {
+      if (ans !== answer) {
+        ans.classList.remove('open'); // Collapse other answers
+      }
+    });
+
+    // Toggle the open class on the clicked answer
+    answer.classList.toggle('open');
+  });
+});
+
+
+// const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector('.icon');
+
+    // Close other open answers
+    document.querySelectorAll('.faq-answer').forEach((el) => {
+      if (el !== answer) {
+        el.style.display = 'none';
+        el.previousElementSibling.querySelector('.icon').textContent = '+';
+      }
+    });
+
+    // Toggle current answer
+    if (answer.style.display === 'block') {
+      answer.style.display = 'none';
+      icon.textContent = '+';
+    } else {
+      answer.style.display = 'block';
+      icon.textContent = '−';
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const aboutButton = document.querySelector('.left-group a[href="about_usa.php"]');
+  const banner = document.getElementById('banner');
+
+  if (aboutButton) {
+    // Hide the banner initially
+    banner.style.display = 'none';
+
+    // Create a scrollable container
+    banner.style.maxHeight = '300px';
+    banner.style.overflowY = 'auto';
+    banner.style.marginTop = '20px';
+    banner.style.marginBottom = '20px';
+
+    // Add click listener
+    aboutButton.addEventListener('click', function (e) {
+      e.preventDefault(); // stop link navigation
+
+      // Show banner below filter panel, above footer
+      banner.style.display = 'block';
+      banner.scrollIntoView({ behavior: 'smooth' }); // optional scroll
+    });
+  }
+});
+
+function redirectCountry(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get the search query from the input field
+    const searchInput = document.getElementById("searchInput").value.trim();
+
+    // If the search input is empty, do nothing
+    if (searchInput === "") {
+        alert("Please enter a university name to search.");
+        return;
+    }
+
+    // Add a timestamp to prevent caching of the search result
+    const timestamp = new Date().getTime();
+
+    // Redirect to the search page with the search term and timestamp
+    window.location.href = `search_aus.php?search_query=${encodeURIComponent(searchInput)}&t=${timestamp}`;
+
+    // Clear the input field for the next search
+    document.getElementById("searchInput").value = "";
+}
+
+
+  </script>
+
+<style>
+@keyframes typing {
+  0% {
+    width: 0ch;
+  }
+  40% {
+    width: 30ch; /* Adjust this to match your actual text length */
+  }
+  60% {
+    width: 30ch;
+  }
+  100% {
+    width: 0ch;
+  }
+
+}
+
+@keyframes flipIn {
+  0% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+.banner_content {
+  text-align: center !important;
+}
+</style>
+
+</body>
+</html>
