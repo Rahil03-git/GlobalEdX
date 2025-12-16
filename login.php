@@ -194,11 +194,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <img src="img/logo.png.png" alt="GlobalEdX Logo" class="logo">
     <h2>Login</h2>
 
+    <?php if (!empty($errorMessage)) : ?>
+      <div class="error-message"><?php echo htmlspecialchars($errorMessage); ?></div>
+    <?php endif; ?>
 
-
-
-
-
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
         <label for="email">Email:</label>
       <input type="email" id="email" name="email" required autocomplete="email">
 
