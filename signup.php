@@ -246,29 +246,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <h2>Sign Up</h2>
 
+  <?php if ($signupSuccess): ?>
+    <div class="modal show">
+      <h3>Registration Successful!</h3>
+      <p>Redirecting to login page...</p>
+    </div>
+  <?php else: ?>
+    <form method="POST" action="" autocomplete="off">
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" name="fullName" required autocomplete="off">
 
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required autocomplete="off">
 
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required autocomplete="current-password" minlength="3">
 
+      <?php if (!empty($errorMessage)): ?>
+        <div class='error-message'><?= htmlspecialchars($errorMessage) ?></div>
+      <?php endif; ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <button type="submit">Sign Up</button>
+    </form>
+  <?php endif; ?>
 
     <div class="footer">
     <p>Already have an account? <a href="login.php">Login here</a></p>
