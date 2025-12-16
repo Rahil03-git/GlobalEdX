@@ -40,6 +40,8 @@ if ($result && $result->num_rows > 0) {
     }
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -874,13 +876,13 @@ footer {
 			</a>
 			<ul class="dropdown-menu" id="dropdownMenu">
 				<li><a class="academics-options" href="pro_academic_anu.php">Programs</a></li>
-				<li><a class="academics-options" href="fee_academic_anu.php">Tution Fees</a></li>
+				<li><a class="academics-options" href="fee_academic_anu.php">Tuition Fees</a></li>
 
 				<li><hr class="dropdown-divider"></li>
 			</ul>
 			</li>
 
-        <a href="req_anu.php">Requeirments</a>
+        <a href="req_anu.php">Requirements</a>
         <a href="./universities/anucontact.html">Help-Line</a>
       </li>
 
@@ -919,7 +921,29 @@ footer {
                             </tr>
                         </thead>
                         <tbody>
-
+                            <?php foreach ($groupedTuitionData as $programName => $entries): ?>
+                                <tr>
+                                    <td rowspan="<?= count($entries) ?>" style="background-color: white; color: black; border: 2px solid black; vertical-align: middle; text-align: center; font-weight: bold;">
+                                        <?= htmlspecialchars($programName) ?>
+                                    </td>
+                                    <td style="background-color: white; color: black; border: 2px solid black; font-weight: normal;"><?= htmlspecialchars($entries[0]['Field_Of_Study']) ?></td>
+                                    <td style="background-color: white; color: black; border: 2px solid black; font-weight: normal;"><?= htmlspecialchars($entries[0]['Semesters_Or_Trimesters']) ?></td>
+                                    <td style="background-color: white; color: black; border: 2px solid black; font-weight: normal;"><?= htmlspecialchars($entries[0]['Duration']) ?></td>
+                                    <td style="background-color: white; color: black; border: 2px solid black; font-weight: normal;"><?= htmlspecialchars($entries[0]['USD$']) ?></td>
+                                    <td style="background-color: white; color: black; border: 2px solid black; font-weight: normal;"><?= htmlspecialchars($entries[0]['Semester_Or_Trimester_Fees']) ?></td>
+                                    <td style="background-color: white; color: black; border: 2px solid black; font-weight: normal;"><?= htmlspecialchars($entries[0]['Tuition_Fee_Category']) ?></td>
+                                </tr>
+                                <?php for ($i = 1; $i < count($entries); $i++): ?>
+                                    <tr>
+                                        <td style="background-color: white; color: black; border: 2px solid black; font-weight: normal;"><?= htmlspecialchars($entries[$i]['Field_Of_Study']) ?></td>
+                                        <td style="background-color: white; color: black; border: 2px solid black; font-weight: normal;"><?= htmlspecialchars($entries[$i]['Semesters_Or_Trimesters']) ?></td>
+                                        <td style="background-color: white; color: black; border: 2px solid black; font-weight: normal;"><?= htmlspecialchars($entries[$i]['Duration']) ?></td>
+                                        <td style="background-color: white; color: black; border: 2px solid black; font-weight: normal;"><?= htmlspecialchars($entries[$i]['USD$']) ?></td>
+                                        <td style="background-color: white; color: black; border: 2px solid black; font-weight: normal;"><?= htmlspecialchars($entries[$i]['Semester_Or_Trimester_Fees']) ?></td>
+                                        <td style="background-color: white; color: black; border: 2px solid black; font-weight: normal;"><?= htmlspecialchars($entries[$i]['Tuition_Fee_Category']) ?></td>
+                                    </tr>
+                                <?php endfor; ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
