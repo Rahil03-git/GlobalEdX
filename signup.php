@@ -245,3 +245,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <img src="img/logo.png.png" alt="GlobalEdX Logo" class="logo">
 
   <h2>Sign Up</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="footer">
+    <p>Already have an account? <a href="login.php">Login here</a></p>
+  </div>
+</div>
+
+</body>
+</html>
