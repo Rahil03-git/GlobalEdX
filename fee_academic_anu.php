@@ -919,3 +919,202 @@ footer {
                             </tr>
                         </thead>
                         <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ <!-- footer line starts -->
+  <div class="secondary-footer">
+	<!-- your content -->
+  </div>
+  
+  <!-- footer line ends -->
+
+<!-- footer2 html part start  -->
+ <footer>
+	<div class="container">
+		<div class="row">
+			<!-- 1st Column: Company Info -->
+			<div class="col-md-4">
+				<div class="footer_text">
+					<h3><b><u>ADDRESS</u></b></h3>
+					<p>United International University, UIU Permanent Campus</p>
+					<p>United City, Madani Avenue</p>
+					<p>Notun Bazar, 100 - Feet, Dhaka - 1212</p>
+				</div>
+			</div>
+			
+			<!-- 2nd Column: Links -->
+			<div class="col-md-4">
+				<div class="footer_links">
+					<h3><b><u>USEFUL LINKS</u></b></h3>
+					<ul>
+						<li><a href="about.html">About GlobalEdX</a></li>
+						<li><a href="#">Blogs</a></li>
+						<li><a href="#">Success Stories</a></li>
+						<li><a href="#">Terms & Conditions</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- 3rd Column: Social Media -->
+			<div class="col-md-4">
+				<div class="footer_social">
+				  <h3><b><u>FOLLOW US</u></b></h3>
+				  <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+				  <a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+				  <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+				  <a href="#"><i class="fas fa-envelope"></i> Email</a>
+				</div>
+			  </div>
+		</div>
+	</div>
+
+	<div class="footer-bottom">
+		<div class="footer-bottom-left">
+		  <a href="#" class="copyright">@Copyright</a>
+		</div>
+		<div class="footer-bottom-right">
+		  <span>||</span>
+		  <a href="#">Data Privacy Statement</a>
+		  <span>||</span>
+		  <a href="#">Cookies</a>
+		  <span>||</span>
+		</div>
+	  </div>
+	  
+	  
+</footer>
+<!-- footer html part end  -->
+
+    <!-- Bootstrap JS -->
+    <!-- js link start -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldZa5p5fC2G6KZs4Ks8lg2a44cId4jTkz76PKaX" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-cn7l7gDp0eyIG6mvEH16lAaqjZfGnirKwrjvJoaAqh6Ez4eZ0CtFLR69Zo5I2sT" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/custom.js"></script>
+<!-- js link end -->
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // ✅ Toggle Dropdown Helper
+  function setupDropdown(toggleSelector, menuSelector, containerId) {
+    const toggle = document.querySelector(toggleSelector);
+    const menu = document.querySelector(menuSelector);
+
+    if (toggle && menu) {
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        menu.classList.toggle('show');
+      });
+
+      // Attach only one global click listener per dropdown
+      document.addEventListener('click', function (e) {
+        if (!document.getElementById(containerId).contains(e.target)) {
+          menu.classList.remove('show');
+        }
+      });
+    }
+  }
+
+  // ✅ Setup Academics and Dream Countries dropdowns
+  setupDropdown('#academicsDropdown > a.nav-link.dropdown-toggle', '#academicsDropdown > ul.dropdown-menu', 'academicsDropdown');
+  setupDropdown('#dreamDropdown > a.nav-link.dropdown-toggle', '#dreamDropdown > ul.dropdown-menu', 'dreamDropdown');
+
+  // ✅ Banner dropdowns (unchanged)
+  function toggleBannerDropdown(dropdownId) {
+    document.querySelectorAll('.banner-dropdown').forEach(dropdown => {
+      if (dropdown.id === dropdownId) {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+      } else {
+        dropdown.style.display = 'none';
+      }
+    });
+  }
+
+  const fieldsBtn = document.getElementById("fieldsBtn");
+  if (fieldsBtn) {
+    fieldsBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      toggleBannerDropdown("fieldsDropdown");
+    });
+  }
+
+  const programsBtn = document.getElementById("programsBtn");
+  if (programsBtn) {
+    programsBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      toggleBannerDropdown("programsDropdown");
+    });
+  }
+
+  const feesBtn = document.getElementById("feesBtn");
+  if (feesBtn) {
+    feesBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      toggleBannerDropdown("feesDropdown");
+    });
+  }
+
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest('.info-links')) {
+      document.querySelectorAll('.banner-dropdown').forEach(dropdown => {
+        dropdown.style.display = 'none';
+      });
+    }
+  });
+});
+// sunject card flip functionality
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.subject-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+    });
+  });
+});
+</script>
+<style>
+@keyframes typing {
+  0% {
+    width: 0ch;
+  }
+  50% {
+    width: 45ch; /* Adjust based on your text length */
+  }
+  100% {
+    width: 0ch;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
+}
+
+.typing-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.typing-text {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid transparent; /* <-- hides the blinking caret */
+  animation: typing 12s steps(53, end) infinite; /* <-- removed blink animation */
+  white-space: nowrap;
+}
+
+</style>
+</body>
+</html>
