@@ -876,13 +876,13 @@ footer {
 			</a>
 			<ul class="dropdown-menu" id="dropdownMenu">
 				<li><a class="academics-options" href="pro_academic_us.php">Programs</a></li>
-				<li><a class="academics-options" href="fee_academic_us.php">Tution Fees</a></li>
+				<li><a class="academics-options" href="fee_academic_us.php">Tuition Fees</a></li>
 
 				<li><hr class="dropdown-divider"></li>
 			</ul>
 			</li>
 
-        <a href="req_us.php">Requeirments</a>
+        <a href="req_us.php">Requirements</a>
         <a href="./universities/us_contact.html">Help-Line</a>
       </li>
 
@@ -902,7 +902,61 @@ footer {
     
 <div class="program-section">
   <div class="container">
+    <?php
+    // Step 1: Group results by Level → Program
+    $programsByLevel = [];
 
+    while ($row = $result->fetch_assoc()) {
+        $level = $row['Program_Level'] ?? 'Unknown';
+        $program = $row['Program_Name'];
+
+$programsByLevel[$level][$program][] = [
+    'name'        => $row['Subject_Name'],
+    'field'       => $row['Field_Of_Study_Name'],
+    'description' => $row['Subject_Description']
+];
+    }
+
+    // Step 2: Accent colors
+    $colors = ['#71c7ff', '#006c82', '#e44b9d', '#ff965b', '#6b5bff'];
+    $colorIndex = 0;
+
+    // Step 3: Render output
+    foreach ($programsByLevel as $level => $programs): ?>
+      <!-- Level Heading -->
+      <h1 class="text-center mb-5 fw-bold typing-container" style="color: black;">
+  <u class="typing-text">Programs Offered at University of Sydney</u>
+</h1>
+
+      <?php foreach ($programs as $programName => $subjects): ?>
+        <!-- Program Heading -->
+<h3 class="mt-4 mb-3 text-center fw-bold" style="color: #1e90ff;">
+    <?= htmlspecialchars($programName) ?>
+</h3>
+        <div class="row gx-4 gy-4">
+          <?php foreach ($subjects as $sub):
+            $color = $colors[$colorIndex % count($colors)];
+            $cardId = 'sub' . $colorIndex;
+          ?>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+              <div class="subject-card" id="<?= $cardId ?>" style="--accent: <?= htmlspecialchars($color) ?>;">
+                <!-- Front -->
+                <div class="front face d-flex align-items-center justify-content-center">
+                  <div class="text-center">
+  <h6 class="mb-1 subject-title"><?= htmlspecialchars($sub['name']) ?></h6>
+  <small class="d-block text-muted">[<?= htmlspecialchars($sub['field']) ?>]</small>
+</div>
+                </div>
+                <!-- Back -->
+                <div class="back face d-flex align-items-center justify-content-center">
+                  <p class="subject-desc text-center px-3 mb-0"><?= htmlspecialchars($sub['description']) ?></p>
+                </div>
+              </div>
+            </div>
+          <?php $colorIndex++; endforeach; ?>
+        </div> <!-- /row -->
+      <?php endforeach; ?>
+    <?php endforeach; ?>
   </div> <!-- /container -->
 </div> <!-- /program-section -->
 
