@@ -590,3 +590,67 @@ input[type="file"]::file-selector-button:hover {
         });
     });
 </script>
+
+<?php if ($showModal): ?>
+<div id="successModal" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+">
+  <div style="
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 650px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      font-family: Poppins, sans-serif;
+      position: relative;
+  ">
+    <h2 style="text-align:center;color:#1b1b3a;">
+        We have got all of your information!
+    </h2>
+
+    <p style="margin-top:15px;font-weight:600;">
+        Below is the auto-generated offer letter email that will be sent to the university:
+    </p>
+
+    <div style="
+        background:#f5f5f5;
+        padding:20px;
+        border-radius:10px;
+        margin-top:15px;
+        white-space:pre-line;
+        font-family:monospace;
+        max-height:300px;
+        overflow-y:auto;
+    ">
+        <?php echo htmlspecialchars($offerEmail); ?>
+    </div>
+
+    <button onclick="document.getElementById('successModal').style.display='none'"
+        style="
+            margin-top:20px;
+            background:#6c63ff;
+            color:white;
+            border:none;
+            padding:12px 20px;
+            border-radius:10px;
+            font-weight:bold;
+            cursor:pointer;
+            width:100%;
+        ">
+        Close
+    </button>
+  </div>
+</div>
+<?php endif; ?>
+
+
+</body>
+</html>
