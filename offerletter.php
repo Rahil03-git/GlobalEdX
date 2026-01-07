@@ -427,3 +427,166 @@ input[type="file"]::file-selector-button:hover {
 
     <button class="submit-btn" type="submit">Submit Request</button>
   </form>
+
+  <script>
+  const line1Text = "Do you want an Offer Letter?";
+  const line2Text = "Then fill up the credentials";
+
+  const line1El = document.getElementById("line1");
+  const line2El = document.getElementById("line2");
+
+  let i = 0, j = 0, isErasing = false;
+
+  function typeLine1() {
+    if (!isErasing) {
+      if (i <= line1Text.length) {
+        line1El.textContent = line1Text.substring(0, i);
+        i++;
+        setTimeout(typeLine1, 80);
+      } else {
+        setTimeout(typeLine2, 500);
+      }
+    } else {
+      if (i >= 0) {
+        line1El.textContent = line1Text.substring(0, i);
+        i--;
+        setTimeout(typeLine1, 40);
+      } else {
+        isErasing = false;
+        typeLine1();
+      }
+    }
+  }
+
+  function typeLine2() {
+    if (!isErasing) {
+      if (j <= line2Text.length) {
+        line2El.textContent = line2Text.substring(0, j);
+        j++;
+        setTimeout(typeLine2, 80);
+      } else {
+        setTimeout(eraseLines, 2000);
+      }
+    } else {
+      if (j >= 0) {
+        line2El.textContent = line2Text.substring(0, j);
+        j--;
+        setTimeout(typeLine2, 40);
+      } else {
+        isErasing = false;
+        typeLine1();
+      }
+    }
+  }
+
+  function eraseLines() {
+    isErasing = true;
+    typeLine2();
+  }
+
+  window.onload = typeLine1;
+</script>
+
+
+<!-- Quit Button -->
+<button id="quitBtn" style="
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    background: linear-gradient(145deg, #ff4b4b, #c33232);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 5px 0 #991f1f;
+    transition: all 0.2s ease-in-out;
+">
+    Quit
+</button>
+
+<!-- Quit Confirmation Modal -->
+<div id="quitModal" style="
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    font-family: Arial, sans-serif;
+    color: #000;
+    flex-direction: column;
+">
+    <div style="
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    ">
+        <h2 style="margin-bottom: 15px;">Quit Form?</h2>
+        <p style="margin-bottom: 25px;">Are you sure you want to quit?</p>
+        
+        <button id="confirmQuitBtn" style="
+            background: linear-gradient(145deg, #f44336, #d32f2f);
+            color: white;
+            margin-right: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #992222;
+            transition: all 0.2s ease-in-out;
+        ">
+            Yes
+        </button>
+
+        <button id="cancelQuitBtn" style="
+            background: linear-gradient(145deg, #e0e0e0, #bdbdbd);
+            color: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #888;
+            transition: all 0.2s ease-in-out;
+        ">
+            No
+        </button>
+    </div>
+</div>
+
+<!-- Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const quitBtn = document.getElementById('quitBtn');
+        const quitModal = document.getElementById('quitModal');
+        const confirmQuitBtn = document.getElementById('confirmQuitBtn');
+        const cancelQuitBtn = document.getElementById('cancelQuitBtn');
+
+        quitBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            quitModal.style.display = 'flex';
+        });
+
+        cancelQuitBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            quitModal.style.display = 'none';
+        });
+
+        confirmQuitBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = "index.php"; // Modify path as necessary
+        });
+    });
+</script>
