@@ -280,3 +280,150 @@ input[type="file"]::file-selector-button:hover {
 </style>
 
 </head>
+
+<body>
+  <form class="form-card" action="submit_offer.php" method="POST" enctype="multipart/form-data">
+    <h2 class="typing-text">
+  <span id="line1"></span><br>
+  <span id="line2"></span>
+</h2>
+
+
+
+    <!-- Personal Info -->
+    <label>Full Name (as per passport/NID):</label>
+    <input type="text" name="full_name" required>
+
+    <label>Father’s Name:</label>
+    <input type="text" name="father_name" required>
+
+    <label>Mother’s Name:</label>
+    <input type="text" name="mother_name" required>
+
+    <label>Date of Birth:</label>
+    <input type="date" name="dob" required>
+
+    <label>Nationality:</label>
+    <input type="text" name="nationality" required>
+
+    <label>Religion:</label>
+    <input type="text" name="religion" required>
+
+    <label>Marital Status:</label>
+    <input type="text" name="marital_status" required>
+
+    <!-- Contact Info -->
+    <label>Phone Number:</label>
+    <input type="text" name="phone" required>
+
+    <label>Email Address:</label>
+    <input type="email" name="email" required>
+
+    <label>Present Address:</label>
+    <textarea name="present_address" required></textarea>
+
+    <!-- Academic -->
+    <label>SSC/O Levels Passing Year:</label>
+    <input type="text" name="ssc_year" required>
+
+    <label>HSC/A Levels Passing Year:</label>
+    <input type="text" name="hsc_year" required>
+
+
+    <label>Medium of Study:</label>
+    <select name="medium" required>
+      <option value="English">English</option>
+      <option value="Bangla">Bangla</option>
+    </select>
+
+    <!-- File Uploads -->
+    <label>National ID Card (NID):</label>
+    <input class="file-input" type="file" name="nid_card" accept=".jpg,.jpeg,.png,.pdf" required>
+
+    <label>SSC Certificate or Marksheet:</label>
+    <input class="file-input" type="file" name="ssc_certificate" accept=".jpg,.jpeg,.png,.pdf" required>
+
+    <label>HSC Certificate or Marksheet:</label>
+    <input class="file-input" type="file" name="hsc_certificate" accept=".jpg,.jpeg,.png,.pdf" required>
+
+    <label>Valid Passport (if available):</label>
+    <input class="file-input" type="file" name="passport_scan" accept=".jpg,.jpeg,.png,.pdf">
+
+    <label>English Language Proficiency Certificate:</label>
+    <input class="file-input" type="file" name="english_cert" accept=".jpg,.jpeg,.png,.pdf" required>
+
+    <label>Father’s NID Card:</label>
+    <input class="file-input" type="file" name="father_nid" accept=".jpg,.jpeg,.png,.pdf" required>
+
+    <label>Mother’s NID Card:</label>
+    <input class="file-input" type="file" name="mother_nid" accept=".jpg,.jpeg,.png,.pdf" required>
+
+    <label>Letter of Recommendation (LOR):</label>
+    <input class="file-input" type="file" name="lor" accept=".jpg,.jpeg,.png,.pdf" required>
+
+    <label>Statement of Purpose (optional):</label>
+    <input class="file-input" type="file" name="sop" accept=".jpg,.jpeg,.png,.pdf">
+
+    <label>CV/Resume (optional):</label>
+    <input class="file-input" type="file" name="cv" accept=".jpg,.jpeg,.png,.pdf">
+
+    <label>Passport Size Photograph:</label>
+    <input class="file-input" type="file" name="passport_photo" accept=".jpg,.jpeg,.png,.pdf" required>
+
+        <label>Country Preference:</label>
+    <input type="text" name="country_of_choice" required>
+
+            <label>University Preference:</label>
+    <input type="text" name="preferred_university" required>
+
+                <label>Which program do you wanna apply for:</label>
+    <select name="program_type" required>
+  <option value="Undergraduate">Undergraduate</option>
+  <option value="Graduate">Graduate</option>
+  <option value="PhD">PhD</option>
+</select>
+                <label>What is your preferred subject :</label>
+    <input type="text" name="preferred_subject" required>
+
+    <label>Intake Session:</label>
+<select name="intake_season" required>
+  <option value="Spring">Spring</option>
+  <option value="Summer">Summer</option>
+  <option value="Fall">Fall</option>
+  <option value="Winter">Winter</option>
+</select>
+
+<label>Intake Year:</label>
+<select name="intake_year" required>
+  <option value="2023">2023</option>
+  <option value="2024">2024</option>
+  <option value="2025">2025</option>
+  <option value="2026">2026</option>
+  <option value="2027">2027</option>
+  <option value="2028">2028</option>
+  <option value="2029">2029</option>
+  <option value="2030">2030</option>
+</select>
+<label>Have you already applied to any universities?</label>
+<select name="already_applied" required>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+</select>
+<!-- Declaration Confirmation -->
+<label for="declaration_confirmation">I confirm that all information provided is accurate:</label>
+<select name="declaration_confirmation" id="declaration_confirmation" required>
+  <option value="" disabled selected>Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+</select>
+
+<!-- Data Usage Agreement Checkbox (Google Form Style) -->
+<div style="display: flex; align-items: center; justify-content: space-between; margin: 15px 0; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+  <label for="agree_data_use" style="font-size: 16px; color: #333; flex: 1;">
+    I agree to allow GlobalEdX to use my data for university application processing.
+  </label>
+  <input type="checkbox" id="agree_data_use" name="agree_data_use" required style="width: 28px; height: 28px; cursor: pointer; accent-color: #1a73e8;">
+</div>
+
+    <button class="submit-btn" type="submit">Submit Request</button>
+  </form>
