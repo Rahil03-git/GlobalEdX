@@ -179,3 +179,218 @@ button:hover{
 }
 </style>
 </head>
+
+<body>
+<div class="card">
+<h2>
+  🎯 Recommendation Engine
+  <span class="dark-toggle" onclick="toggleDark()">🌙 Dark Mode</span>
+</h2>
+
+<form id="recForm" method="POST" action="submission.php">
+
+<select name="country_id" id="country" required>
+<option value="">Select Country</option>
+<?php while($c=mysqli_fetch_assoc($countryResult)): ?>
+<option value="<?= $c['country_id'] ?>"><?= $c['name'] ?></option>
+<?php endwhile; ?>
+</select>
+
+<select name="university_id" id="university" required>
+<option value="">Select University</option>
+</select>
+
+<select name="program_id" id="program" required>
+<option value="">Select Program</option>
+<?php while($p=mysqli_fetch_assoc($programResult)): ?>
+<option value="<?= $p['program_id'] ?>"><?= $p['name'] ?></option>
+<?php endwhile; ?>
+</select>
+
+<select name="field_id" id="field" required>
+<option value="">Select Field</option>
+<?php while($f=mysqli_fetch_assoc($fieldResult)): ?>
+<option value="<?= $f['field_id'] ?>"><?= $f['name'] ?></option>
+<?php endwhile; ?>
+</select>
+
+<select name="subject_id" id="subject" required>
+<option value="">Select Subject</option>
+</select>
+
+<div class="section">Academic Information</div>
+
+<input id="ssc" name="ssc_gpa" placeholder="SSC GPA (x.xx)">
+<div id="sscErr" class="err"></div>
+
+<input id="hsc" name="hsc_gpa" placeholder="HSC GPA (x.xx)">
+<div id="hscErr" class="err"></div>
+
+<input id="cgpa" name="cgpa" placeholder="CGPA (x.xx)" class="hidden">
+<div id="cgpaErr" class="err"></div>
+
+<input id="exp" name="experience" placeholder="Experience (Years)" class="hidden">
+<div id="expErr" class="err"></div>
+
+<input id="ielts" name="ielts" placeholder="IELTS Score">
+<div id="ieltsErr" class="err"></div>
+
+<button type="submit">🔍 Get Recommendation</button>
+
+<input type="hidden" name="theme" id="theme" value="light">
+</form>
+</div>
+
+
+
+<script>
+/* 🌙 DARK MODE */
+function toggleDark(){
+  document.body.classList.toggle('dark');
+
+  const theme = document.body.classList.contains('dark') ? 'dark' : 'light';
+  document.getElementById('theme').value = theme;
+
+  // persist theme
+  localStorage.setItem('theme', theme);
+}
+
+/* 🔁 Restore theme on reload */
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+
+  if(savedTheme === 'dark'){
+    document.body.classList.add('dark');
+  }
+
+  document.getElementById('theme').value = savedTheme;
+});
+</script>
+
+
+<script>
+const universitiesByCountry = <?= json_encode($universitiesByCountry) ?>;
+const subjectsMap = <?= json_encode($subjectsMap) ?>;
+
+const country=document.getElementById('country');
+const university=document.getElementById('university');
+const program=document.getElementById('program');
+const field=document.getElementById('field');
+const subject=document.getElementById('subject');
+
+const ssc=document.getElementById('ssc');
+const hsc=document.getElementById('hsc');
+const cgpa=document.getElementById('cgpa');
+const exp=document.getElementById('exp');
+const ielts=document.getElementById('ielts');
+
+const sscErr=document.getElementById('sscErr');
+const hscErr=document.getElementById('hscErr');
+const cgpaErr=document.getElementById('cgpaErr');
+const expErr=document.getElementById('expErr');
+const ieltsErr=document.getElementById('ieltsErr');
+
+country.onchange=()=>{
+  university.innerHTML='<option value="">Select University</option>';
+  (universitiesByCountry[country.value]||[]).forEach(u=>{
+    university.innerHTML+=`<option value="${u.university_id}">${u.name}</option>`;
+  });
+};
+
+function updateSubjects(){
+  subject.innerHTML='<option value="">Select Subject</option>';
+  (((subjectsMap[university.value]||{})[program.value]||{})[field.value]||[])
+  .forEach(s=>subject.innerHTML+=`<option value="${s.id}">${s.name}</option>`);
+}
+
+university.onchange=updateSubjects;
+program.onchange=()=>{
+  updateSubjects();
+  ssc.classList.add('hidden');
+  hsc.classList.add('hidden');
+  cgpa.classList.add('hidden');
+  exp.classList.add('hidden');
+
+  if(program.value==1){ ssc.classList.remove('hidden'); hsc.classList.remove('hidden'); }
+  if(program.value==2){ hsc.classList.remove('hidden'); cgpa.classList.remove('hidden'); exp.classList.remove('hidden'); }
+  if(program.value==3){ cgpa.classList.remove('hidden'); exp.classList.remove('hidden'); }
+};
+field.onchange=updateSubjects;
+
+/* ================= VALIDATION ================= */
+document.getElementById('recForm').onsubmit=e=>{
+  let ok=true;
+
+  const dec5 = /^\d+\.\d{2}$/;   // ✅ FIXED
+  const dec4 = /^\d+\.\d{2}$/;
+  const ieltsVals=[2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9];
+
+  sscErr.textContent=hscErr.textContent=cgpaErr.textContent=expErr.textContent=ieltsErr.textContent='';
+
+if (!ssc.classList.contains('hidden')) {
+  const val = parseFloat(ssc.value);
+
+  if (!dec5.test(ssc.value)) {
+    sscErr.textContent = 'Enter valid SSC GPA (e.g. 3.50)';
+    ok = false;
+  }
+  else if (val > 5.00) {
+    sscErr.textContent = 'SSC GPA must be within 5.00';
+    ok = false;
+  }
+  else if (val < 3.50) {
+    sscErr.textContent = 'SSC GPA below 3.50 is not eligible';
+    ok = false;
+  }
+}
+
+if (!hsc.classList.contains('hidden')) {
+  const val = parseFloat(hsc.value);
+
+  if (!dec5.test(hsc.value)) {
+    hscErr.textContent = 'Enter valid HSC GPA (e.g. 3.50)';
+    ok = false;
+  }
+  else if (val > 5.00) {
+    hscErr.textContent = 'HSC GPA must be within 5.00';
+    ok = false;
+  }
+  else if (val < 3.50) {
+    hscErr.textContent = 'HSC GPA below 3.50 is not eligible';
+    ok = false;
+  }
+}
+
+if (!cgpa.classList.contains('hidden')) {
+  const val = parseFloat(cgpa.value);
+
+  if (!dec4.test(cgpa.value)) {
+    cgpaErr.textContent = 'Enter valid CGPA (e.g. 2.75)';
+    ok = false;
+  }
+  else if (val > 4.00) {
+    cgpaErr.textContent = 'CGPA must be within 4.00';
+    ok = false;
+  }
+  else if (val < 3.00) {
+    cgpaErr.textContent = 'CGPA below 3.00 is not eligible';
+    ok = false;
+  }
+}
+
+if(!exp.classList.contains('hidden')){
+  const max=program.value==2?4:6;
+  if(exp.value<0||exp.value>max){ expErr.textContent=`Experience must be 0–${max} years`; ok=false; }
+}
+
+if(!ieltsVals.includes(parseFloat(ielts.value))){
+  ieltsErr.textContent='Enter valid IELTS score'; ok=false;
+}else if(parseFloat(ielts.value)<5.5){
+  ieltsErr.textContent='IELTS below 5.5 is not eligible'; ok=false;
+}
+
+if(!ok) e.preventDefault();
+};
+</script>
+</body>
+</html>
