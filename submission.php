@@ -111,3 +111,62 @@ else {
 
 $score = round($score);
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Recommendation Result</title>
+
+<style>
+:root{
+  --bg:#f4f6f8;
+  --card:#ffffff;
+  --text:#111827;
+}
+body.dark{
+  --bg:#0f172a;
+  --card:#020617;
+  --text:#e5e7eb;
+}
+
+body{
+  font-family:Arial;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.container{
+  width:900px;
+  margin:40px auto;
+  background:var(--card);
+  padding:30px;
+  border-radius:12px;
+}
+
+.status.high{color:#16a34a}
+.status.medium{color:#f59e0b}
+.status.low{color:#dc2626}
+
+.progress{
+  height:18px;
+  background:#e5e7eb;
+  border-radius:20px;
+  margin:15px 0
+}
+
+.bar{height:100%}
+.bar.high{background:#22c55e}
+.bar.medium{background:#facc15}
+.bar.low{background:#ef4444}
+
+.meta{margin:10px 0;font-size:15px}
+
+button{
+  padding:12px 20px;
+  background:#2563eb;
+  color:#fff;
+  border:none;
+  border-radius:8px
+}
+</style>
+</head>
