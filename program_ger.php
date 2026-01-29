@@ -2,34 +2,39 @@
 // Include the database connection file
 include('connect.php');
 
-// Define the query to fetch program-related details for Australian universities
-$query = "SELECT 
-        u.name AS University_Name,
-        u.global_rank AS World_Rank,
-        GROUP_CONCAT(DISTINCT REPLACE(p.name, ' Programs', '') SEPARATOR ', ') AS Program_Type,
-        COUNT(DISTINCT upf.program_id) AS Program_Count,
-        u.location AS Location
-    FROM 
-        University u
-    INNER JOIN 
-        UniversityProgramField upf ON u.university_id = upf.university_id
-    INNER JOIN 
-        Program p ON upf.program_id = p.program_id
-    WHERE 
-        u.country_id = (
-            SELECT country_id 
-            FROM CountryList 
-            WHERE name = 'Germany'
-        )
-        AND u.name != 'charité universitätsmedizin berlin'
-    GROUP BY 
-        u.university_id
-    ORDER BY 
-        Program_Count DESC, u.global_rank
-";
 
-// Execute the query
-$result = $conn->query($query);
+// Prepare the query
+$sql = "SELECT 
+           u.name AS University_Name,
+           u.global_rank AS World_Rank,
+           GROUP_CONCAT(DISTINCT REPLACE(p.name, ' Programs', '') SEPARATOR ', ') AS Program_Type,
+           tf.fee_category AS Tuition_Fee_Type,
+           u.location AS Location
+         FROM 
+           University u
+         INNER JOIN 
+           UniversityProgramField upf ON u.university_id = upf.university_id
+         INNER JOIN 
+           Program p ON upf.program_id = p.program_id
+         INNER JOIN 
+           tuitionfee tf ON u.university_id = tf.university_id
+         WHERE 
+            u.country_id = (
+                SELECT country_id 
+                FROM CountryList 
+                WHERE name = 'Germany'
+            )
+            AND u.name != 'charité universitätsmedizin berlin'
+         GROUP BY 
+           u.university_id, tf.fee_category
+         ORDER BY 
+           CAST(REGEXP_REPLACE(u.global_rank, '[^0-9]', '') AS UNSIGNED) ASC";
+
+// Prepare the statement
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
+
 ?>
 
 <!DOCTYPE html>
@@ -1042,7 +1047,7 @@ float: right;
         <div class="container mt-5">
             <div class="banner_content">
 <h2 class="text-center" style="font-family: Times New Roman, Times, serif; font-size: 30px; font-weight: bold; text-decoration: underline; display: inline-block; white-space: nowrap; overflow: hidden; animation: typing 6s steps(20, end) infinite, flipIn 1.2s ease-out forwards; transform-origin: top; margin: 0 auto; text-align: center;">
-  Program Based Universities
+  QS World Rank Based Universities
 </h2>
                 <?php if ($result && $result->num_rows > 0): ?>
                     <div class="row mt-4">
@@ -1087,10 +1092,10 @@ if ($university_name == 'heidelberg university') {
 }
                                         ?>
                                        </h5>
-<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Number of Programs:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Program_Count']); ?></span></p>       
-<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Program Types:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Program_Type']); ?></span></p>
+<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">World Rank:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['World_Rank']); ?></span></p>
 <p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Location:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Location']); ?></span></p>
-<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">World Rank:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['World_Rank']); ?></span></p>  
+<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Program Types:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Program_Type']); ?></span></p>
+<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Tuition Fee Type:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Tuition_Fee_Type']); ?></span></p>
                                     </div>
                                 </div>
                             </div>

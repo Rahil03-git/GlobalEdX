@@ -81,10 +81,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       transform-origin: center;
     }
 
-    @keyframes floatCard {
+    /* @keyframes floatCard {
       0%, 100% { transform: rotateY(0deg) rotateX(0deg); }
       50% { transform: rotateY(15deg) rotateX(12deg); }
-    }
+    } */
 
     @keyframes glowPulse {
       0% { box-shadow: 0 0 20px rgba(0, 123, 255, 0.6), 0 0 50px rgba(0, 123, 255, 0.5); }
@@ -270,7 +270,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
   <?php endif; ?>
 
-    <div class="footer">
+  <div class="footer">
     <p>Already have an account? <a href="login.php">Login here</a></p>
   </div>
 </div>

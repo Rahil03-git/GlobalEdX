@@ -11,6 +11,9 @@ if ($conn->connect_error) {
     die("<div class='error-box'>Database connection failed: " . $conn->connect_error . "</div>");
 }
 
+date_default_timezone_set('Asia/Dhaka');
+
+
 function uploadFile($fieldName, $fullName, $required = true) {
     if (!isset($_FILES[$fieldName])) {
         if ($required) die("<div class='error-box'>File upload error: $fieldName missing.</div>");
@@ -47,7 +50,6 @@ function uploadFile($fieldName, $fullName, $required = true) {
     return $filename;
 }
 
-// Collect POST data
 $full_name = trim($_POST['full_name']);
 $father_name = trim($_POST['father_name']);
 $mother_name = trim($_POST['mother_name']);
@@ -63,13 +65,27 @@ $hsc_year = $_POST['hsc_year'];
 $medium = $_POST['medium'];
 $country_of_choice = trim($_POST['country_of_choice']);
 $preferred_university = trim($_POST['preferred_university']);
+$uniStmt = $conn->prepare("SELECT name FROM university WHERE university_id = ?");
+$uniStmt->bind_param("i", $preferred_university);
+$uniStmt->execute();
+$uniStmt->bind_result($university_name);
+$uniStmt->fetch();
+$uniStmt->close();
+/* ✅ PROGRAM TYPE FIX (THIS WAS MISSING) */
 $program_type = isset($_POST['program_type']) ? trim($_POST['program_type']) : '';
+
+$programMap = [
+    '1' => 'Undergraduate',
+    '2' => 'Graduate',
+    '3' => 'PhD'
+];
+
+$program_name = $programMap[$program_type] ?? '';
 $preferred_subject = trim($_POST['preferred_subject']);
 $intake_season = $_POST['intake_season'];
 $intake_year = $_POST['intake_year'];
 $already_applied = $_POST['already_applied'];
 
-// Uploads
 $nid_card_path = uploadFile('nid_card', $full_name, true);
 $ssc_certificate_path = uploadFile('ssc_certificate', $full_name, true);
 $hsc_certificate_path = uploadFile('hsc_certificate', $full_name, true);
@@ -104,183 +120,284 @@ $stmt->bind_param(
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Submit Offer Letter</title>
+<title>Offer Letter Submission</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 body{
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,#667eea,#764ba2);
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:#fff;
+  margin:0;
+  background:#0b1220;
+  font-family:'Poppins',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
 }
-.container{
-    background:rgba(255,255,255,0.1);
-    padding:30px 40px;
-    border-radius:15px;
-    box-shadow:0 10px 25px rgba(0,0,0,.3);
-    max-width:550px;
-    text-align:center;
-    backdrop-filter:blur(10px);
+
+/* Wrapper */
+.wrapper{
+  width:100%;
+  max-width:860px;
+  background:#5A7ACD;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:26px;
+  padding:30px 32px;
+  box-shadow:0 35px 70px rgba(0,0,0,.55);
+  color:#e5e7eb;
 }
-.success{
-    margin:18px 0;
-    padding:14px;
-    border-radius:8px;
-    background:#28a745aa;
+
+/* Header */
+.top-status{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  margin-bottom:8px;
 }
+
+.status-icon{
+  width:60px;
+  height:60px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#34d399,#10b981);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  color:#022c22;
+}
+
+.title{
+  font-size:22px;
+  font-weight:700;
+}
+
+.subtitle{
+  color:#9ca3af;
+  margin-top:2px;
+}
+
+/* Divider */
+.line{
+  height:1px;
+  background:rgba(255,255,255,.12);
+  margin:18px 0;
+}
+
+/* Info box */
+.info{
+  padding:12px 14px;
+  border-radius:14px;
+  background:#0b1220;
+  border:1px dashed rgba(34,197,94,.45);
+  color:#a7f3d0;
+  font-size:14px;
+}
+
+/* Section header */
+.section{
+  margin-top:18px;
+  font-weight:600;
+  color:#cbd5e1;
+}
+
+/* Email preview */
+.preview-card{
+  margin-top:10px;
+  font-family: 'Times New Roman', Times, serif;
+  padding:14px;
+  border-radius:14px;
+  background:#fff;
+  border:1px solid rgba(0, 0, 0, 0.95);
+  white-space:pre-line;
+  color:#0b0f1a;
+}
+
+/* Buttons area */
+.btn-row{
+  margin-top:18px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
 .btn{
-    background:#fff;
-    color:#764ba2;
-    padding:10px 26px;
-    border-radius:40px;
-    text-decoration:none;
-    display:inline-block;
-    margin-top:18px;
+  flex:1;
+  padding:10px 16px;
+  border-radius:12px;
+  text-decoration:none;
+  text-align:center;
+  font-weight:600;
+  border:1px solid rgba(255,255,255,.14);
+  color:#e5e7eb;
+  background:#360185;
+  transition:.25s;
 }
-.dialog-box{
-    background:#fff;
-    color:#333;
-    border-radius:12px;
-    padding:18px 20px;
-    margin-top:18px;
-    text-align:left;
-    box-shadow:0 12px 28px rgba(0,0,0,.35);
-    display:none;
+.btn:hover{filter:brightness(1.18);}
+
+.primary{
+  border-color:#4f46e5;
+  background:linear-gradient(145deg,#4f46e5,#6366f1);
+  color:#fff;
 }
-.dialog-header{
-    font-weight:600;
-    margin-bottom:8px;
+
+/* Loading */
+.load-box{
+  margin-top:14px;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.15);
+  background:#0b0f1a;
+  text-align:center;
 }
-.loading-area{
-    text-align:center;
-}
+
 .spinner{
-    border:4px solid rgba(0,0,0,.15);
-    border-top:4px solid #764ba2;
-    border-radius:50%;
-    width:48px;
-    height:48px;
-    margin:10px auto;
-    animation:spin 1s linear infinite;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,.18);
+  border-top:3px solid #818cf8;
+  margin:6px auto;
+  animation:spin 1s linear infinite;
 }
 @keyframes spin{to{transform:rotate(360deg)}}
-.timer-text{font-weight:600;margin-top:6px}
-.email-body{
-    margin-top:12px;
-    padding:12px;
-    border-radius:8px;
-    background:#f6f6ff;
-    border:1px solid #ddd;
-    white-space:pre-line;
+
+.timer{
+  margin-top:4px;
+  color:#c7d2fe;
+}
+
+/* Error */
+.error{
+  border:1px solid rgba(239,68,68,.5);
+  background:rgba(239,68,68,.1);
+  color:#fecaca;
+  padding:12px;
+  border-radius:12px;
 }
 </style>
 </head>
 
 <body>
-<div class="container">
+
+<div class="wrapper">
 
 <?php if ($stmt->execute()): ?>
 
-    <h1>Thank you, <?= htmlspecialchars($full_name) ?>!</h1>
+  <div class="top-status">
+    <div class="status-icon">✔</div>
 
-    <div class="success">
-        Your offer letter request has been submitted successfully.<br>
-        Within 24 hours, we will send you an email.
+    <div>
+      <div class="title">Application Submitted</div>
+      <div class="subtitle">We’ve received your offer-letter request</div>
     </div>
+  </div>
 
-    <p><b>We have got all of your information!</b></p>
-    <p>Below is the auto-generated offer letter email that will be sent to the university:</p>
+  <div class="info">
+    Thanks <b><?= htmlspecialchars($full_name) ?></b> — your documents were uploaded
+    successfully and will be reviewed within 24 hours.
+  </div>
 
-    <!-- Loading Phase -->
-    <div id="loadingBox" class="dialog-box" style="display:block;">
-        <div class="loading-area">
-            <div class="spinner"></div>
-            <div class="timer-text">Generating email… <span id="countTimer">8</span>s</div>
-        </div>
-    </div>
+  <div class="line"></div>
 
-    <!-- Email Preview Dialog -->
-    <div id="emailDialog" class="dialog-box">
+<div class="section" id="emailStatusText">Generating university email draft…</div>
 
-        <div class="dialog-header">Offer Letter Application Email</div>
+  <!-- Loading -->
+  <div id="loadingBox" class="load-box">
+    <div class="spinner"></div>
+    <div class="timer">Please wait… <span id="countTimer">6</span>s</div>
+  </div>
 
-        <div class="email-body" id="generatedEmail">
-<?=
-htmlspecialchars(
-"To: Admissions Office
-$preferred_university
+  <!-- Email Preview -->
+  <div id="emailDialog" style="display:none;">
 
-Subject: Offer Letter Application – $preferred_subject ($intake_season $intake_year)
+    <div class="section">Offer Letter Application Email</div>
 
-Dear Admission Team,
+<div class="preview-card" id="generatedEmail">
+<?= htmlspecialchars(
+    "Date: " . date('F j, Y') . "
 
-I, $full_name, am applying for admission to the $preferred_subject program
-at $preferred_university for the $intake_season $intake_year intake.
+To: Admissions Office
+$university_name
 
-All required academic and personal documents have been attached
-as part of my application submission via GlobalEdX.
+Subject: Offer Letter Application for $program_name Program ($intake_season - $intake_year).
 
-I kindly request you to review my profile
-and issue my official Offer Letter.
+Dear Admission Committee,
 
-Thank you for your time and kind support.
+I, $full_name, want to apply at $university_name in the subject of \"$preferred_subject\" which is from $program_name program, in the upcoming intake of $intake_season $intake_year.
+
+All academic and personal documents have been submitted through the GlobalEdX application portal. Kindly review my profile and oblige me by providing the Official Offer Letter.
+
+Thank you for your support. Waiting for your response.
 
 Sincerely,
 $full_name
 Phone: $phone
 Email: $email"
-)
-?>
-        </div>
+); ?>
+</div>
 
-        <a href="mailto:?subject=Offer Letter Application&body=<?= urlencode("
-$generatedEmail") ?>" class="btn">
-            Send Email to University
-        </a>
+
+
+    <div class="btn-row">
+
+      <a href="mailto:?subject=Offer Letter Application&body=<?= urlencode("
+$generatedEmail") ?>"
+         class="btn primary">
+         Send Email to University
+      </a>
+
+      <a href="index.php" class="btn">
+        Return to Dashboard
+      </a>
 
     </div>
+  </div>
 
-    <a href="index.php" class="btn">Back to home</a>
+<script>
+let t = 6;
+const el = document.getElementById("countTimer");
+const box = document.getElementById("loadingBox");
+const dlg = document.getElementById("emailDialog");
+const statusText = document.getElementById("emailStatusText");
 
-    <script>
-        let timer = 3;
-        const el = document.getElementById("countTimer");
-        const loadingBox = document.getElementById("loadingBox");
-        const emailDialog = document.getElementById("emailDialog");
+const countdown = setInterval(() => {
+    t--;
+    el.textContent = t;
 
-        const countdown = setInterval(() => {
-            timer--;
-            el.textContent = timer;
+    if (t === 0) {
+        clearInterval(countdown);
 
-            if (timer === 0) {
-                clearInterval(countdown);
-                loadingBox.style.display = "none";
-                emailDialog.style.display = "block";
-            }
-        }, 1000);
-    </script>
+        box.style.display = "none";
+        dlg.style.display = "block";
+
+        // 🔹 Change text when email is ready
+        statusText.textContent = "AI-generated email is ready.";
+    }
+}, 1000);
+</script>
 
 <?php else: ?>
 
-    <h1>Oops! Something went wrong.</h1>
-    <div class="error-box">
-        Database insert error: <?= htmlspecialchars($stmt->error) ?>
+  <div class="top-status">
+    <div class="status-icon" style="background:rgba(239,68,68,.4);color:#450a0a;">✖</div>
+    <div>
+      <div class="title">Submission Failed</div>
+      <div class="subtitle">Something went wrong</div>
     </div>
-    <a href="offerletter.php" class="btn">Try Again</a>
+  </div>
+
+  <div class="error">
+    <?= htmlspecialchars($stmt->error) ?>
+  </div>
+
+  <div class="btn-row">
+    <a href="offerletter.php" class="btn primary">Try Again</a>
+  </div>
 
 <?php endif; ?>
 
 </div>
+
 </body>
 </html>
-
-<?php
-$stmt->close();
-$conn->close();
-?>
