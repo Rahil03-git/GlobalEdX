@@ -1,655 +1,422 @@
 <?php
 include 'connect.php';
-?>
 
-<?php
-$showModal = false;
-$offerEmail = "";
+/* ================= FILTERED DATA ONLY ================= */
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $showModal = true;
+// Allowed countries
+$allowedCountries = [
+  'Australia',
+  'Germany',
+  'United States of America'
+];
 
-    $full_name = $_POST['full_name'];
-    $preferred_university = $_POST['preferred_university'];
-    $program_type = $_POST['program_type'];
-    $preferred_subject = $_POST['preferred_subject'];
-    $intake_season = $_POST['intake_season'];
-    $intake_year = $_POST['intake_year'];
+// Allowed universities per country
+$allowedUniversities = [
+  'Australian National University',
+  'University of Melbourne',
+  'University of Sydney',
+  'Heidelberg University',
+  'Ludwig Maximilian University of Munich',
+  'Technical University of Munich',
+  'Harvard University',
+  'Massachusetts Institute of Technology',
+  'Stanford University'
+];
 
-    $offerEmail = "Dear Admissions Committee,\n\n";
-    $offerEmail .= "We would like to submit the application of $full_name for the $program_type program in $preferred_subject at $preferred_university.\n";
-    $offerEmail .= "The applicant wishes to enroll in the $intake_season $intake_year intake.\n\n";
-    $offerEmail .= "All required academic documents and personal information have been provided.\n\n";
-    $offerEmail .= "Kind regards,\nGlobalEdX Admission Team";
+// Fetch countries
+$countryResult = mysqli_query($conn, "
+  SELECT country_id, name 
+  FROM countrylist 
+  WHERE name IN ('Australia','Germany','United States of America')
+  ORDER BY name
+");
+
+// Fetch universities
+$universityResult = mysqli_query($conn, "
+  SELECT university_id, name, country_id 
+  FROM university 
+  WHERE name IN (
+    'Australian National University',
+    'University of Melbourne',
+    'University of Sydney',
+    'Heidelberg University',
+    'Ludwig Maximilian University of Munich',
+    'Technical University of Munich',
+    'Harvard University',
+    'Massachusetts Institute of Technology',
+    'Stanford University'
+  )
+  ORDER BY name
+");
+
+/* ================= NEW: SUBJECT MAPPING ================= */
+$upfResult = mysqli_query($conn, "
+  SELECT upf.university_id, upf.program_id, s.subject_id, s.name
+  FROM universityprogramfield upf
+  JOIN subject s ON s.subject_id = upf.subject_id
+");
+
+$subjectMap = [];
+while ($row = mysqli_fetch_assoc($upfResult)) {
+  $subjectMap[$row['university_id']][$row['program_id']][] = $row['name'];
+}
+
+/* Build university map for JS */
+$universitiesByCountry = [];
+while ($u = mysqli_fetch_assoc($universityResult)) {
+  $universitiesByCountry[$u['country_id']][] = [
+    'id' => $u['university_id'],
+    'name' => $u['name']
+  ];
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get Offer Letter</title>
-   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Offer Letter Application</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+*{box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{ 
+  margin:0; 
+  background:#0f172a; 
+  min-height:100vh; 
+  display:flex; 
+  justify-content:center; 
+  padding:40px 12px; 
+} 
+/* Layout container */ 
+.form-wrapper{ 
+  width:100%; 
+  max-width:1050px; 
+} 
+/* Header */ 
+.page-header{ 
+  margin-bottom:22px; 
+  text-align:center; 
+} 
+.page-header h1{ 
+  color:#e5e7eb; 
+  margin:0; 
+  font-size:30px; 
+  font-weight:700; 
+} 
+.page-header p{ 
+  margin-top:6px; 
+  color:#9ca3af; 
+  font-size:14px; 
+} 
+/* Card */ 
+.form-card{ 
+  background:#020617; 
+  border:1px solid rgba(255,255,255,.08); 
+  border-radius:18px; 
+  box-shadow:0 18px 48px rgba(0,0,0,.45); 
+  padding:26px 30px; width:100%; 
+} 
+/* Section titles */ 
+.section-title{ 
+  margin-top:24px; 
+  margin-bottom:10px; 
+  color:#cbd5e1; 
+  font-weight:600; 
+  font-size:15px; 
+  letter-spacing:.2px; 
+} 
+/* Grid */ 
+.grid{ 
+  display:grid; 
+  grid-template-columns:1fr 1fr; 
+  gap:16px 18px; 
+} 
+.grid.full{
+  grid-template-columns:1fr;
+} 
+@media(max-width:820px){ 
+  .grid{grid-template-columns:1fr;} 
+} 
+/* Field */ 
+label{ 
+  color:#9ca3af; 
+  font-size:13px; 
+  margin-bottom:6px; 
+  display:block; 
+}
+   input,select,textarea{ 
+    width:100%; 
+    padding:11px 13px; 
+    background:#020617; 
+    border:1px solid rgba(255,255,255,.15); 
+    border-radius:10px; 
+    color:#e5e7eb; 
+    font-size:14px; 
+    transition:.25s; 
+  } 
+  input:focus,select:focus,textarea:focus{ 
+    outline:none; 
+    border-color:#38bdf8; 
+    box-shadow:0 0 0 2px rgba(56,189,248,.25); 
+  } 
+  /* File upload */ 
+  input[type="file"]{ 
+    padding:9px; 
+    background:#020617; 
+  }
 
-* {
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+/* Checkbox row */ 
+.agree-box{ 
+  display:flex; 
+  gap:10px; 
+  align-items:flex-start; 
+  padding:12px; 
+  margin-top:18px; 
+  border:3px dashed rgba(255,255,255,.18); 
+  border-radius:10px; 
+  background:#020617; 
+} 
+.agree-box p{ 
+  color:#cbd5e1; 
+  margin:0; 
+  font-size:15px; 
+} 
+.agree-box input{
+  width:16px;
+  height:16px;
+  margin-top:2px;
 }
 
-  body {
-    background: linear-gradient(135deg,rgb(71, 81, 255),rgb(0, 10, 149));
-    margin: 0;
-    padding: 50px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    perspective: 1400px;
-    overflow-x: hidden;
-  }
-
-  .form-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: saturate(180%) blur(16px);
-    border-radius: 30px;
-    padding: 50px 60px;
-    max-width: 900px;
-    width: 100%;
-    box-shadow:
-      0 20px 50px rgba(0, 0, 0, 0.25),
-      inset 0 0 20px rgba(108, 99, 255, 0.25);
-    transform-style: preserve-3d;
-    animation: cardEntrance 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    transform-origin: center bottom;
-    border: 1.5px solid rgba(108, 99, 255, 0.4);
-  }
-
-  h2 {
-    text-align: center;
-    margin-bottom: 50px;
-    color: #1b1b3a;
-    font-weight: 800;
-    font-size: 3rem;
-    letter-spacing: 2px;
-    text-shadow:
-      0 2px 8px rgba(108, 99, 255, 0.55),
-      0 0 12px rgba(108, 99, 255, 0.4);
-  }
-
-  label {
-    font-weight: 700;
-    display: block;
-    margin-top: 25px;
-    color: #2a2a50;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    user-select: none;
-    transition: color 0.3s ease;
-  }
-
-  label:hover {
-    color: #6c63ff;
-  }
-
-  input, select, textarea {
-    width: 100%;
-    padding: 16px 20px;
-    border: 2px solid #cfd7ff;
-    border-radius: 18px;
-    margin-top: 10px;
-    font-size: 1.1rem;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow:
-      inset 0 4px 10px rgba(0, 0, 0, 0.05),
-      0 2px 8px rgba(108, 99, 255, 0.1);
-    background: #fefeff;
-    font-weight: 500;
-    transform-style: preserve-3d;
-    color: #2a2a50;
-    letter-spacing: 0.02em;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: #a2a6c6;
-    font-weight: 400;
-  }
-
-  input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: #6c63ff;
-    box-shadow:
-      0 0 25px rgba(108, 99, 255, 0.6),
-      inset 0 0 12px rgba(108, 99, 255, 0.3);
-    background: #fff;
-    color: #1b1b3a;
-    transform: translateZ(40px);
-  }
-
-  .file-input {
-    padding: 8px 0;
-  }
-
-  .submit-btn {
-    background: linear-gradient(135deg, #6c63ff, #5549d5);
-    color: #fff;
-    border: none;
-    padding: 20px;
-    width: 100%;
-    border-radius: 20px;
-    margin-top: 50px;
-    font-size: 1.4rem;
-    font-weight: 800;
-    cursor: pointer;
-    box-shadow:
-      0 12px 30px rgba(108, 99, 255, 0.75),
-      0 8px 10px rgba(0, 0, 0, 0.25);
-    transition: all 0.35s ease;
-    transform-style: preserve-3d;
-    letter-spacing: 0.08em;
-    user-select: none;
-    text-transform: uppercase;
-  }
-
-  .submit-btn:hover {
-    background: linear-gradient(135deg, #5549d5, #3f3999);
-    box-shadow:
-      0 18px 40px rgba(85, 73, 213, 0.95),
-      0 12px 15px rgba(0, 0, 0, 0.35);
-    transform: translateZ(14px) scale(1.02);
-  }
-
-  .submit-btn:active {
-    transform: translateZ(8px) scale(0.98);
-    box-shadow:
-      0 10px 22px rgba(85, 73, 213, 0.7),
-      0 6px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Subtle floating effect on input focus */
-  input:focus, select:focus, textarea:focus {
-    animation: floatUp 0.6s forwards;
-  }
-
-  @keyframes floatUp {
-    0% {
-      transform: translateZ(0);
-    }
-    100% {
-      transform: translateZ(40px);
-    }
-  }
-
-  @keyframes cardEntrance {
-    0% {
-      opacity: 0;
-      transform: rotateX(18deg) translateY(60px) scale(0.94);
-      filter: blur(10px);
-    }
-    100% {
-      opacity: 1;
-      transform: rotateX(0deg) translateY(0) scale(1);
-      filter: blur(0);
-    }
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .form-card {
-      padding: 35px 30px;
-      border-radius: 20px;
-    }
-    h2 {
-      font-size: 2.25rem;
-      margin-bottom: 35px;
-    }
-    label {
-      font-size: 1rem;
-    }
-    input, select, textarea {
-      font-size: 1rem;
-      padding: 14px 16px;
-      border-radius: 14px;
-    }
-    .submit-btn {
-      font-size: 1.15rem;
-      padding: 16px;
-      border-radius: 16px;
-      margin-top: 35px;
-    }
-  }
-  .file-input {
-  margin-top: 20px;
+.submit-btn{
+  margin-top:22px;
+  width:100%;
+  padding:13px;
+  border:none;
+  border-radius:12px;
+  font-size:15px;
+  font-weight:700;
+  background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+  color:#020617;
+  cursor:pointer;
+}
+#quitBtn{
+  position:fixed;
+  top:18px;
+  right:18px;
+  padding:10px 16px;
+  border:none;
+  border-radius:10px;
+  background:#ef4444;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
 }
 
-input[type="file"] {
-  padding: 14px 18px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  border: 2px solid #ccc;
-  border-radius: 14px;
-  background: #fafafa;
-  color: #333;
-  width: 100%;
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* Submit Button Hover */
+.submit-btn:hover{
+  background:linear-gradient(135deg,#0ea5e9,#0284c7);
+  box-shadow:0 8px 20px rgba(14,165,233,.35);
+  transform:translateY(-1px);
 }
 
-input[type="file"]::file-selector-button {
-  font-size: 1.05rem;
-  font-weight: 600;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #6c63ff, #5549d5);
-  color: white;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 10px rgba(108, 99, 255, 0.4);
+/* Quit Button Hover */
+#quitBtn:hover{
+  background:#dc2626;
+  box-shadow:0 6px 16px rgba(239,68,68,.4);
+  transform:translateY(-1px);
 }
 
-input[type="file"]::file-selector-button:hover {
-  background: linear-gradient(135deg, #5549d5, #3f3999);
-  transform: scale(1.05);
-}
-.typing-text {
-  text-align: center;
-  font-weight: 700;
-  font-size: 2rem;
-  color: #222;
-  margin-bottom: 40px;
+/* Smooth transition for both */
+.submit-btn,
+#quitBtn{
+  transition:all .25s ease;
 }
 
-.typing-text span::after {
-  content: "|";
-  animation: blink 0.8s infinite;
-  color: #6c63ff;
-  font-weight: bold;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-
-</style>
-
+/* Modal (unchanged logic — UI refreshed) */ #quitModal,#successModal{ position:fixed; top:0;left:0; width:100%;height:100%; background:rgba(0,0,0,.65); display:none; justify-content:center; align-items:center; z-index:9999; } .modal-box{ background:#020617; padding:24px 22px; border-radius:14px; border:1px solid rgba(255,255,255,.15); width:92%; max-width:420px; text-align:center; } .modal-box h2{color:#e5e7eb;margin-bottom:6px;} .modal-box p{color:#9ca3af;font-size:14px;margin-bottom:16px;} .modal-btn{ padding:10px 16px; border:none; border-radius:10px; font-weight:600; cursor:pointer; } .primary{background:#0ea5e9;color:#020617;} .secondary{background:#e5e7eb;color:#020617;} textarea.email-preview{ width:100%; height:220px; margin-top:10px; border-radius:10px; background:#020617; border:1px solid rgba(255,255,255,.18); color:#e5e7eb; padding:10px 12px; font-size:13px; } </style>
 </head>
 
 <body>
-  <form class="form-card" action="submit_offer.php" method="POST" enctype="multipart/form-data">
-    <h2 class="typing-text">
-  <span id="line1"></span><br>
-  <span id="line2"></span>
-</h2>
 
+<div class="form-wrapper">
 
-
-    <!-- Personal Info -->
-    <label>Full Name (as per passport/NID):</label>
-    <input type="text" name="full_name" required>
-
-    <label>Father’s Name:</label>
-    <input type="text" name="father_name" required>
-
-    <label>Mother’s Name:</label>
-    <input type="text" name="mother_name" required>
-
-    <label>Date of Birth:</label>
-    <input type="date" name="dob" required>
-
-    <label>Nationality:</label>
-    <input type="text" name="nationality" required>
-
-    <label>Religion:</label>
-    <input type="text" name="religion" required>
-
-    <label>Marital Status:</label>
-    <input type="text" name="marital_status" required>
-
-    <!-- Contact Info -->
-    <label>Phone Number:</label>
-    <input type="text" name="phone" required>
-
-    <label>Email Address:</label>
-    <input type="email" name="email" required>
-
-    <label>Present Address:</label>
-    <textarea name="present_address" required></textarea>
-
-    <!-- Academic -->
-    <label>SSC/O Levels Passing Year:</label>
-    <input type="text" name="ssc_year" required>
-
-    <label>HSC/A Levels Passing Year:</label>
-    <input type="text" name="hsc_year" required>
-
-
-    <label>Medium of Study:</label>
-    <select name="medium" required>
-      <option value="English">English</option>
-      <option value="Bangla">Bangla</option>
-    </select>
-
-    <!-- File Uploads -->
-    <label>National ID Card (NID):</label>
-    <input class="file-input" type="file" name="nid_card" accept=".jpg,.jpeg,.png,.pdf" required>
-
-    <label>SSC Certificate or Marksheet:</label>
-    <input class="file-input" type="file" name="ssc_certificate" accept=".jpg,.jpeg,.png,.pdf" required>
-
-    <label>HSC Certificate or Marksheet:</label>
-    <input class="file-input" type="file" name="hsc_certificate" accept=".jpg,.jpeg,.png,.pdf" required>
-
-    <label>Valid Passport (if available):</label>
-    <input class="file-input" type="file" name="passport_scan" accept=".jpg,.jpeg,.png,.pdf">
-
-    <label>English Language Proficiency Certificate:</label>
-    <input class="file-input" type="file" name="english_cert" accept=".jpg,.jpeg,.png,.pdf" required>
-
-    <label>Father’s NID Card:</label>
-    <input class="file-input" type="file" name="father_nid" accept=".jpg,.jpeg,.png,.pdf" required>
-
-    <label>Mother’s NID Card:</label>
-    <input class="file-input" type="file" name="mother_nid" accept=".jpg,.jpeg,.png,.pdf" required>
-
-    <label>Letter of Recommendation (LOR):</label>
-    <input class="file-input" type="file" name="lor" accept=".jpg,.jpeg,.png,.pdf" required>
-
-    <label>Statement of Purpose (optional):</label>
-    <input class="file-input" type="file" name="sop" accept=".jpg,.jpeg,.png,.pdf">
-
-    <label>CV/Resume (optional):</label>
-    <input class="file-input" type="file" name="cv" accept=".jpg,.jpeg,.png,.pdf">
-
-    <label>Passport Size Photograph:</label>
-    <input class="file-input" type="file" name="passport_photo" accept=".jpg,.jpeg,.png,.pdf" required>
-
-        <label>Country Preference:</label>
-    <input type="text" name="country_of_choice" required>
-
-            <label>University Preference:</label>
-    <input type="text" name="preferred_university" required>
-
-                <label>Which program do you wanna apply for:</label>
-    <select name="program_type" required>
-  <option value="Undergraduate">Undergraduate</option>
-  <option value="Graduate">Graduate</option>
-  <option value="PhD">PhD</option>
-</select>
-                <label>What is your preferred subject :</label>
-    <input type="text" name="preferred_subject" required>
-
-    <label>Intake Session:</label>
-<select name="intake_season" required>
-  <option value="Spring">Spring</option>
-  <option value="Summer">Summer</option>
-  <option value="Fall">Fall</option>
-  <option value="Winter">Winter</option>
-</select>
-
-<label>Intake Year:</label>
-<select name="intake_year" required>
-  <option value="2023">2023</option>
-  <option value="2024">2024</option>
-  <option value="2025">2025</option>
-  <option value="2026">2026</option>
-  <option value="2027">2027</option>
-  <option value="2028">2028</option>
-  <option value="2029">2029</option>
-  <option value="2030">2030</option>
-</select>
-<label>Have you already applied to any universities?</label>
-<select name="already_applied" required>
-  <option value="Yes">Yes</option>
-  <option value="No">No</option>
-</select>
-<!-- Declaration Confirmation -->
-<label for="declaration_confirmation">I confirm that all information provided is accurate:</label>
-<select name="declaration_confirmation" id="declaration_confirmation" required>
-  <option value="" disabled selected>Select</option>
-  <option value="Yes">Yes</option>
-  <option value="No">No</option>
-</select>
-
-<!-- Data Usage Agreement Checkbox (Google Form Style) -->
-<div style="display: flex; align-items: center; justify-content: space-between; margin: 15px 0; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
-  <label for="agree_data_use" style="font-size: 16px; color: #333; flex: 1;">
-    I agree to allow GlobalEdX to use my data for university application processing.
-  </label>
-  <input type="checkbox" id="agree_data_use" name="agree_data_use" required style="width: 28px; height: 28px; cursor: pointer; accent-color: #1a73e8;">
-</div>
-
-    <button class="submit-btn" type="submit">Submit Request</button>
-  </form>
-
-  <script>
-  const line1Text = "Do you want an Offer Letter?";
-  const line2Text = "Then fill up the credentials";
-
-  const line1El = document.getElementById("line1");
-  const line2El = document.getElementById("line2");
-
-  let i = 0, j = 0, isErasing = false;
-
-  function typeLine1() {
-    if (!isErasing) {
-      if (i <= line1Text.length) {
-        line1El.textContent = line1Text.substring(0, i);
-        i++;
-        setTimeout(typeLine1, 80);
-      } else {
-        setTimeout(typeLine2, 500);
-      }
-    } else {
-      if (i >= 0) {
-        line1El.textContent = line1Text.substring(0, i);
-        i--;
-        setTimeout(typeLine1, 40);
-      } else {
-        isErasing = false;
-        typeLine1();
-      }
-    }
-  }
-
-  function typeLine2() {
-    if (!isErasing) {
-      if (j <= line2Text.length) {
-        line2El.textContent = line2Text.substring(0, j);
-        j++;
-        setTimeout(typeLine2, 80);
-      } else {
-        setTimeout(eraseLines, 2000);
-      }
-    } else {
-      if (j >= 0) {
-        line2El.textContent = line2Text.substring(0, j);
-        j--;
-        setTimeout(typeLine2, 40);
-      } else {
-        isErasing = false;
-        typeLine1();
-      }
-    }
-  }
-
-  function eraseLines() {
-    isErasing = true;
-    typeLine2();
-  }
-
-  window.onload = typeLine1;
-</script>
-
-
-<!-- Quit Button -->
-<button id="quitBtn" style="
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 12px 24px;
-    background: linear-gradient(145deg, #ff4b4b, #c33232);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 5px 0 #991f1f;
-    transition: all 0.2s ease-in-out;
-">
-    Quit
-</button>
-
-<!-- Quit Confirmation Modal -->
-<div id="quitModal" style="
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
-    z-index: 1001;
-    font-family: Arial, sans-serif;
-    color: #000;
-    flex-direction: column;
-">
-    <div style="
-        background-color: white;
-        padding: 30px;
-        border-radius: 10px;
-        text-align: center;
-        max-width: 400px;
-        width: 90%;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    ">
-        <h2 style="margin-bottom: 15px;">Quit Form?</h2>
-        <p style="margin-bottom: 25px;">Are you sure you want to quit?</p>
-        
-        <button id="confirmQuitBtn" style="
-            background: linear-gradient(145deg, #f44336, #d32f2f);
-            color: white;
-            margin-right: 10px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 0 #992222;
-            transition: all 0.2s ease-in-out;
-        ">
-            Yes
-        </button>
-
-        <button id="cancelQuitBtn" style="
-            background: linear-gradient(145deg, #e0e0e0, #bdbdbd);
-            color: #333;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 0 #888;
-            transition: all 0.2s ease-in-out;
-        ">
-            No
-        </button>
-    </div>
-</div>
-
-<!-- Script -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const quitBtn = document.getElementById('quitBtn');
-        const quitModal = document.getElementById('quitModal');
-        const confirmQuitBtn = document.getElementById('confirmQuitBtn');
-        const cancelQuitBtn = document.getElementById('cancelQuitBtn');
-
-        quitBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            quitModal.style.display = 'flex';
-        });
-
-        cancelQuitBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            quitModal.style.display = 'none';
-        });
-
-        confirmQuitBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            window.location.href = "index.php"; // Modify path as necessary
-        });
-    });
-</script>
-
-<?php if ($showModal): ?>
-<div id="successModal" style="
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.65);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-">
-  <div style="
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      max-width: 650px;
-      width: 90%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      font-family: Poppins, sans-serif;
-      position: relative;
-  ">
-    <h2 style="text-align:center;color:#1b1b3a;">
-        We have got all of your information!
-    </h2>
-
-    <p style="margin-top:15px;font-weight:600;">
-        Below is the auto-generated offer letter email that will be sent to the university:
-    </p>
-
-    <div style="
-        background:#f5f5f5;
-        padding:20px;
-        border-radius:10px;
-        margin-top:15px;
-        white-space:pre-line;
-        font-family:monospace;
-        max-height:300px;
-        overflow-y:auto;
-    ">
-        <?php echo htmlspecialchars($offerEmail); ?>
-    </div>
-
-    <button onclick="document.getElementById('successModal').style.display='none'"
-        style="
-            margin-top:20px;
-            background:#6c63ff;
-            color:white;
-            border:none;
-            padding:12px 20px;
-            border-radius:10px;
-            font-weight:bold;
-            cursor:pointer;
-            width:100%;
-        ">
-        Close
-    </button>
+  <div class="page-header">
+    <h1>Offer Letter Application Form</h1>
+    <p>Please provide accurate information to proceed</p>
   </div>
+
+  <form class="form-card" action="submit_offer.php" method="POST" enctype="multipart/form-data">
+
+    <div class="section-title">Personal Information</div>
+    <div class="grid">
+      <div><label>Full Name</label><input type="text" name="full_name" required></div>
+      <div><label>Father’s Name</label><input type="text" name="father_name" required></div>
+      <div><label>Mother’s Name</label><input type="text" name="mother_name" required></div>
+      <div><label>Date of Birth</label><input type="date" name="dob" required></div>
+      <div><label>Nationality</label><input type="text" name="nationality" required></div>
+      <div><label>Religion</label><input type="text" name="religion" required></div>
+      <div><label>Marital Status</label><input type="text" name="marital_status" required></div>
+    </div>
+
+    <div class="section-title">Contact Details</div>
+    <div class="grid">
+      <div><label>Phone</label><input type="text" name="phone" required></div>
+      <div><label>Email</label><input type="email" name="email" required></div>
+    </div>
+
+    <div class="grid full">
+      <div><label>Present Address</label><textarea name="present_address" required></textarea></div>
+    </div>
+
+    <div class="section-title">Academic Information</div> <div class="grid"> <div> <label>SSC/O Levels Passing Year</label> <input type="text" name="ssc_year" required> </div> <div> <label>HSC/A Levels Passing Year</label> <input type="text" name="hsc_year" required> </div> <div> <label>Medium of Study</label> <select name="medium" required> <option value="English">English</option> <option value="Bangla">Bangla</option> </select> </div> </div> <div class="section-title">Document Uploads</div> <div class="grid"> <div><label>NID Card</label><input type="file" name="nid_card" required></div> <div><label>SSC Certificate</label><input type="file" name="ssc_certificate" required></div> <div><label>HSC Certificate</label><input type="file" name="hsc_certificate" required></div> <div><label>Passport (optional)</label><input type="file" name="passport_scan"></div> <div><label>English Proficiency</label><input type="file" name="english_cert" required></div> <div><label>Father NID</label><input type="file" name="father_nid" required></div> <div><label>Mother NID</label><input type="file" name="mother_nid" required></div> <div><label>Recommendation Letter</label><input type="file" name="lor" required></div> <div><label>Statement of Purpose (optional)</label><input type="file" name="sop"></div> <div><label>CV / Resume (optional)</label><input type="file" name="cv"></div> <div><label>Passport Photo</label><input type="file" name="passport_photo" required></div> </div>
+
+    <div class="section-title">Application Preference</div>
+    <div class="grid">
+
+      <!-- COUNTRY -->
+      <div>
+        <label>Country Preference</label>
+        <select name="country_of_choice" id="countrySelect" required>
+          <option value="" disabled selected>Select Country</option>
+          <?php while ($c = mysqli_fetch_assoc($countryResult)) { ?>
+            <option value="<?= $c['country_id']; ?>">
+              <?= htmlspecialchars($c['name']); ?>
+            </option>
+          <?php } ?>
+        </select>
+      </div>
+
+      <!-- UNIVERSITY -->
+      <div>
+        <label>University Preference</label>
+        <select name="preferred_university" id="universitySelect" required disabled>
+          <option>Select country first</option>
+        </select>
+      </div>
+
+      <!-- PROGRAM TYPE -->
+      <div>
+        <label>Program Type</label>
+        <select name="program_type" id="programSelect" required disabled>
+          <option value="" disabled selected>Select university first</option>
+          <option value="1">Undergraduate</option>
+          <option value="2">Graduate</option>
+          <option value="3">PhD</option>
+        </select>
+      </div>
+
+      <!-- SUBJECT -->
+      <div>
+        <label>Preferred Subject</label>
+        <select name="preferred_subject" id="subjectSelect" required disabled>
+          <option value="" disabled selected>Select program first</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Intake Session</label>
+        <select name="intake_season" required>
+          <option>Spring</option><option>Summer</option>
+          <option>Fall</option><option>Winter</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Intake Year</label>
+        <select name="intake_year" required>
+          <option>2024</option><option>2025</option><option>2026</option>
+          <option>2027</option><option>2028</option><option>2029</option><option>2030</option>
+        </select>
+      </div>
+
+      <div> <label>Already Applied?</label> <select name="already_applied" required> <option>Yes</option><option>No</option> </select> </div>
+
+    </div>
+
+    <div class="agree-box">
+      <input type="checkbox" name="agree_data_use" required>
+      <p>I agree to allow GlobalEdX to process my data.</p>
+    </div>
+
+    <button class="submit-btn" type="submit">Submit Application</button>
+
+  </form>
 </div>
-<?php endif; ?>
+
+<button id="quitBtn" type="button">Quit</button>
+
+
+<script>
+const universityMap = <?= json_encode($universitiesByCountry); ?>;
+const subjectMap = <?= json_encode($subjectMap); ?>;
+
+const country = document.getElementById('countrySelect');
+const university = document.getElementById('universitySelect');
+const program = document.getElementById('programSelect');
+const subject = document.getElementById('subjectSelect');
+
+/* COUNTRY → UNIVERSITY */
+country.addEventListener('change', () => {
+  // Reset university
+  university.innerHTML = '<option value="" disabled selected>Select University</option>';
+  university.disabled = false;
+
+  // Reset program
+  program.innerHTML = '<option value="" disabled selected>Select university first</option>';
+  program.disabled = true;
+
+  // Reset subject
+  subject.innerHTML = '<option value="" disabled selected>Select program first</option>';
+  subject.disabled = true;
+
+  // Populate universities
+  if (universityMap[country.value]) {
+    universityMap[country.value].forEach(u => {
+      const opt = document.createElement('option');
+      opt.value = u.id;
+      opt.textContent = u.name;
+      university.appendChild(opt);
+    });
+  }
+});
+
+/* UNIVERSITY → PROGRAM */
+university.addEventListener('change', () => {
+  program.innerHTML = `
+    <option value="" disabled selected>Select Program</option>
+    <option value="1">Undergraduate</option>
+    <option value="2">Graduate</option>
+    <option value="3">PhD</option>
+  `;
+  program.disabled = false;
+
+  // Reset subject
+  subject.innerHTML = '<option value="" disabled selected>Select program first</option>';
+  subject.disabled = true;
+});
+
+/* PROGRAM → SUBJECT */
+program.addEventListener('change', () => {
+  subject.innerHTML = '<option value="" disabled selected>Select Subject</option>';
+  subject.disabled = false;
+
+  const list = subjectMap[university.value]?.[program.value] || [];
+  list.forEach(name => {
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    subject.appendChild(opt);
+  });
+});
+
+  document.getElementById("quitBtn").addEventListener("click", function () {
+    window.location.href = "index.php";
+  });
+
+  
+</script>
 
 
 </body>
