@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT UserID, PasswordHash, FullName FROM Users WHERE Email = ?");
+    $stmt = $conn->prepare("SELECT UserID, Email, PasswordHash, FullName FROM Users WHERE Email = ?");
     
     if (!$stmt) {
         die("Prepare failed: " . $conn->error); // DEBUGGING HELP
@@ -20,8 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (password_verify($password, $row['PasswordHash'])) {
             session_regenerate_id(true);
-            $_SESSION['UserID'] = $row['UserID'];
-            $_SESSION['user_name'] = $row['FullName']; // Store the name
+$_SESSION['UserID']   = $row['UserID'];
+$_SESSION['user_name'] = $row['FullName'];
+$_SESSION['email']     = $row['Email'];   // ✅ THIS LINE IS REQUIRED
             header("Location: index.php");
             exit;
         } else {
@@ -69,14 +70,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       transform-origin: center;
     }
 
-    @keyframes floatCard {
+    /* @keyframes floatCard {
       0%, 100% {
         transform: rotateY(0deg) rotateX(0deg);
       }
       50% {
         transform: rotateY(15deg) rotateX(12deg);
       }
-    }
+    } */
 
     @keyframes glowPulse {
       0% {
@@ -199,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php endif; ?>
 
     <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-        <label for="email">Email:</label>
+      <label for="email">Email:</label>
       <input type="email" id="email" name="email" required autocomplete="email">
 
       <label for="password">Password:</label>
@@ -214,3 +215,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </body>
 </html>
+
