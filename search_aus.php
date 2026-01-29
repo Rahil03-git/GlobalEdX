@@ -1210,6 +1210,74 @@ background-color: #f0f0f0;
   Searched University
 </h2>
 
+                <?php if ($result && $result->num_rows > 0): ?>
+                    <div class="row mt-4 <?php echo ($result->num_rows === 1) ? 'single-result' : ''; ?>">
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <div class="col-md-7">
+                                <div class="card mb-5">
+                                    <!-- Set Image Path for Specific Universities -->
+                                    <?php
+                                        $university_name = strtolower($row['University_Name']);
+                                        $logo_path = ''; // Default logo path
+
+                                        // Set specific logo paths for the universities
+                                        if ($university_name == 'australian national university') {
+                                            $logo_path = 'img/anulogo.jpeg';
+                                        } elseif ($university_name == 'university of melbourne') {
+                                            $logo_path = 'img/umlogo.jpeg';
+                                        } elseif ($university_name == 'university of sydney') {
+                                            $logo_path = 'img/uslogo.jpeg';
+                                        } 
+
+                                        // Fallback to a default logo if no match
+                                        if ($logo_path == '') {
+                                            $logo_path = 'universities/img/default_logo.jpeg'; 
+                                        }
+                                    ?>
+                                    <img src="<?php echo $logo_path; ?>" class="card-img-top" alt="University Logo" style="height: 150px; object-fit: contain; width: 100%;">
+                                    <div class="card-body" style="background-color: rgb(1, 133, 140); color: black;">
+                                        <h5 class="card-title">
+                                        <?php
+                                            // Check university name and link accordingly
+if ($university_name == 'australian national university') {
+    echo '<h5 class="text-center uni-title">';
+    echo '<a href="universities/anu.html" class="university-link"><strong>' . htmlspecialchars($row['University_Name']) . '</strong></a>';
+} elseif ($university_name == 'university of melbourne') {
+    echo '<h5 class="text-center uni-title">';
+    echo '<a href="universities/um.html" class="university-link"><strong>' . htmlspecialchars($row['University_Name']) . '</strong></a>';
+} elseif ($university_name == 'university of sydney') {
+    echo '<h5 class="text-center uni-title">';
+    echo '<a href="universities/us.html" class="university-link"><strong>' . htmlspecialchars($row['University_Name']) . '</strong></a>';
+} else {
+    echo '<h5 class="text-center uni-title"><strong>' . htmlspecialchars($row['University_Name']) . '</strong></h5>';
+}
+?>
+</h5> 
+<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Location:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Location']); ?></span></p>
+<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Program Types:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Program_Type']); ?></span></p>
+<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Tuition Fee Type:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Tuition_Fee_Type']); ?></span></p>    
+<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">World Rank:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['World_Rank']); ?></span></p>  
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endwhile; ?>
+                    </div>
+                <?php else: ?>
+                    <div class="alert alert-danger mt-2 text-center" id="search-alert" role="alert">
+                        No universities found for AUSTRALIA.
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php
+// Close the database connection
+$conn->close();
+?>
+
 <!-- Notification Banner -->
 <div id="notificationBanner">
 	<div class="banner-header">
