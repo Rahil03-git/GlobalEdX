@@ -817,7 +817,7 @@ footer {
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 		  <li class="nav-item">
-			<a class="nav-link " aria-current="page" href="index.html">Home</a>
+			<a class="nav-link " aria-current="page" href="index.php">Home</a>
 		  </li>
            <!-- Dream Countries Dropdown -->
 <li class="nav-item dropdown" id="dreamDropdown">
@@ -865,7 +865,7 @@ footer {
       <!-- LEFT SIDE -->
       <li class="left-group d-flex align-items-center gap-3">
 
-        <button class="home-button" onclick="location.href='index.html';">
+        <button class="home-button" onclick="location.href='index.php';">
           <img src="img/h1.png" alt="Home">
         </button>
 				<!-- ✅ Academics Dropdown -->
@@ -876,7 +876,7 @@ footer {
 			</a>
 			<ul class="dropdown-menu" id="dropdownMenu">
 				<li><a class="academics-options" href="pro_academic_us.php">Programs</a></li>
-				<li><a class="academics-options" href="fee_academic_us.php">Tuition Fees</a></li>
+				<li><a class="academics-options" href="fee_academic_us.php">Tution Fees</a></li>
 
 				<li><hr class="dropdown-divider"></li>
 			</ul>
@@ -890,9 +890,6 @@ footer {
       <li class="right-group ms-auto d-flex align-items-center gap-3">
         <a href="#">FAQs</a>
         <a href="#">Log in / Sign up</a>
-        <button class="profile-button">
-          <img src="img/p1.png" alt="Profile">
-        </button>
       </li>
 	  </ul>
 	</div>
@@ -1133,4 +1130,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </style>
 </body>
-</html>                        
+</html>
