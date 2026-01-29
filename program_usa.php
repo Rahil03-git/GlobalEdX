@@ -1042,8 +1042,8 @@ float: right;
     <div class="banner_overlay">
         <div class="container mt-5">
             <div class="banner_content">
-<h2 class="text-center" style="font-family: Times New Roman, Times, serif; font-size: 30px; font-weight: bold; text-decoration: underline; display: inline-block; white-space: nowrap; overflow: hidden; animation: typing 6s steps(20, end) infinite, flipIn 1.2s ease-out forwards; transform-origin: top; margin: 0 auto; text-align: center;">
-  Program Based Universities
+  <h2 class="text-center" style="font-family: Times New Roman, Times, serif; font-size: 30px; font-weight: bold; text-decoration: underline; display: inline-block; white-space: nowrap; overflow: hidden; animation: typing 6s steps(20, end) infinite, flipIn 1.2s ease-out forwards; transform-origin: top; margin: 0 auto; text-align: center;">
+  QS World Rank Based Universities
 </h2>
                 <?php if ($result && $result->num_rows > 0): ?>
                     <div class="row mt-4">
@@ -1088,10 +1088,10 @@ if ($university_name == 'harvard university') {
 }
                                         ?>
                                         </h5>
-<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Number of Programs:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Program_Count']); ?></span></p>       
-<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Program Types:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Program_Type']); ?></span></p>
+<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">World Rank:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['World_Rank']); ?></span></p>
 <p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Location:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Location']); ?></span></p>
-<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">World Rank:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['World_Rank']); ?></span></p>  
+<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Program Types:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Program_Type']); ?></span></p>
+<p><strong style="font-family: 'Open Sans', sans-serif; font-size: 17px">Tuition Fee Type:</strong> <span style="font-family: 'Times New Roman', serif; font-size: 19px"><?php echo htmlspecialchars($row['Tuition_Fee_Type']); ?></span></p>
                                     </div>
                                 </div>
                             </div>
