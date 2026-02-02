@@ -275,6 +275,7 @@ background-color: #444;
 /* 2nd navbar css part end */
 
 /*navbar css part end*/
+
 /* banner css part start */
 /* Set height and fit for carousel images */
 /* General container */
@@ -610,6 +611,8 @@ float: right;
 .footer-bottom-right span {
   font-weight: bold;
 }
+
+
 /* 2nd navbar css part start */
 /* shared container */
 .second-navbar .nav-list {
