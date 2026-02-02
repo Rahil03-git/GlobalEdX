@@ -888,7 +888,7 @@ float: right;
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 		  <li class="nav-item">
-			<a class="nav-link " aria-current="page" href="index.html">Home</a>
+			<a class="nav-link " aria-current="page" href="index.php">Home</a>
 		  </li>
            <!-- Dream Countries Dropdown -->
 <li class="nav-item dropdown" id="dreamDropdown">
@@ -917,7 +917,7 @@ float: right;
 			</ul>
 		<!-- Search Form -->
         <div id="suggestions" class="suggestions"></div>
-<form class="d-flex" role="search" method="get" action="search_aus.php" onsubmit="return validateSearch()">
+<form class="d-flex" role="search" method="get" action="search_ger.php" onsubmit="return validateSearch()">
     <input id="searchInput" name="search_query" class="search-input" type="search" placeholder="Search for universities" aria-label="Search" required>
     <button class="search-button" type="submit">
         <img src="img/search.png" alt="Search" class="search-icon">
@@ -934,7 +934,7 @@ float: right;
 	  <ul class="nav-list">
 		<!-- LEFT SIDE -->
 		<li class="left-group">
-		<button class="home-button" onclick="location.href='index.html';">
+		<button class="home-button" onclick="location.href='index.php';">
 			<img src="img/h1.png" alt="Home">
 		</button>
 		  <a href="about_ger.php">About</a>
@@ -945,9 +945,6 @@ float: right;
 		<li class="right-group">
 		  <a href="">FAQs</a>
 		  <a href="#">Log in / Sign up</a>
-		  <button class="profile-button">
-			<img src="img/p1.png" alt="Profile">
-		  </button>
 		</li>
 	  </ul>
 	</div>
@@ -1118,6 +1115,8 @@ if ($university_name == 'heidelberg university') {
 $conn->close();
 ?>
 
+
+
 <!-- footer line starts -->
 <div class="secondary-footer">
 	<!-- your content -->
@@ -1144,7 +1143,7 @@ $conn->close();
 				<div class="footer_links">
 					<h3><b><u>USEFUL LINKS</u></b></h3>
 					<ul>
-						<li><a href="about.php">About GlobalEdX</a></li>
+						<li><a href="about.html">About GlobalEdX</a></li>
 						<li><a href="#">Blogs</a></li>
 						<li><a href="#">Success Stories</a></li>
             <li><a href="#">Terms & Conditions</a></li>
@@ -1417,4 +1416,3 @@ function redirectCountry(event) {
 
 </body>
 </html>
-
