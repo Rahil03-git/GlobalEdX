@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2025 at 11:57 PM
+-- Generation Time: Jan 10, 2026 at 06:39 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -33,13 +33,6 @@ CREATE TABLE `admin` (
   `PasswordHash` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`AdminID`, `Username`, `PasswordHash`, `email`) VALUES
-(5, 'RAHIL', '$2y$10$vF5uQTIelz6gEEjvbJ/q3e2Zta0LmbLcYziSVvMjbfmTNFQgxty.C', 'R@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -225,13 +218,6 @@ INSERT INTO `admissionrequirements` (`requirement_id`, `university_id`, `program
 -- --------------------------------------------------------
 
 --
--- Table structure for table `certificate_info`
---
-
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `contact_messages`
 --
 
@@ -314,7 +300,6 @@ INSERT INTO `fieldofstudy` (`field_id`, `name`) VALUES
 (1, 'Engineering Fields'),
 (3, 'Medical Fields');
 
-
 -- --------------------------------------------------------
 
 --
@@ -362,7 +347,18 @@ CREATE TABLE `offer_letter_requests` (
 --
 
 INSERT INTO `offer_letter_requests` (`id`, `full_name`, `father_name`, `mother_name`, `date_of_birth`, `nationality`, `religion`, `marital_status`, `phone_number`, `email`, `present_address`, `ssc_year`, `hsc_year`, `medium_of_study`, `nid_card_path`, `ssc_certificate_path`, `hsc_certificate_path`, `passport_scan_path`, `english_cert_path`, `father_nid_path`, `mother_nid_path`, `lor_path`, `sop_path`, `cv_path`, `passport_photo_path`, `submitted_at`, `country_of_choice`, `preferred_university`, `program_type`, `preferred_subject`, `intake_season`, `intake_year`, `already_applied`) VALUES
-(2, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', 'West/Dolaipar, Dhaka - 1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.png', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.png', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.png', 'Offer Letter/KaziShibliZamanRahil_passport_scan.png', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.png', 'Offer Letter/KaziShibliZamanRahil_mother_nid.png', 'Offer Letter/KaziShibliZamanRahil_lor.png', 'Offer Letter/KaziShibliZamanRahil_sop.png', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.png', '2025-06-27 17:44:48', 'Germany', 'Heidelberg University', 'Graduate', 'CSE', 'winter', '2028', 'No');
+(34, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', '169/A/8 West Dolaipar, Dhaka-1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.jpg', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_passport_scan.jpg', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_mother_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_lor.jpg', 'Offer Letter/KaziShibliZamanRahil_sop.jpg', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.jpg', '2026-01-08 18:22:55', '3', '10', 'Graduate', 'Matter of Life', 'winter', '2027', 'No'),
+(35, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', '169/A/8 West Dolaipar, Dhaka-1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.jpg', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_passport_scan.jpg', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_mother_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_lor.jpg', 'Offer Letter/KaziShibliZamanRahil_sop.jpg', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.jpg', '2026-01-08 18:33:37', '3', '10', 'Graduate', 'Matter of Life', 'winter', '2027', 'No'),
+(36, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', '169/A/8 West Dolaipar, Dhaka-1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.jpg', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_passport_scan.jpg', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_mother_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_lor.jpg', 'Offer Letter/KaziShibliZamanRahil_sop.jpg', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.jpg', '2026-01-08 18:48:39', '3', '10', 'Graduate', 'Matter of Life', 'winter', '2027', 'No'),
+(37, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', '169/A/8 West Dolaipar, Dhaka-1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.jpg', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_passport_scan.jpg', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_mother_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_lor.jpg', 'Offer Letter/KaziShibliZamanRahil_sop.jpg', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.jpg', '2026-01-08 18:50:23', '3', '10', 'Graduate', 'Matter of Life', 'winter', '2027', 'No'),
+(38, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', '169/A/8 West Dolaipar, Dhaka-1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.jpg', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_passport_scan.jpg', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_mother_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_lor.jpg', 'Offer Letter/KaziShibliZamanRahil_sop.jpg', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.jpg', '2026-01-08 18:56:05', '3', '10', 'Graduate', 'Matter of Life', 'winter', '2027', 'No'),
+(39, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', '169/A/8 West Dolaipar, Dhaka-1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.jpg', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_passport_scan.jpg', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_mother_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_lor.jpg', 'Offer Letter/KaziShibliZamanRahil_sop.jpg', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.jpg', '2026-01-08 19:01:00', '3', '10', 'Graduate', 'Matter of Life', 'winter', '2027', 'No'),
+(40, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', '169/A/8 West Dolaipar, Dhaka-1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.jpg', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_passport_scan.jpg', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_mother_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_lor.jpg', 'Offer Letter/KaziShibliZamanRahil_sop.jpg', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.jpg', '2026-01-08 19:02:40', '3', '10', 'Graduate', 'Matter of Life', 'winter', '2027', 'No'),
+(41, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', '169/A/8 West Dolaipar, Dhaka-1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.jpg', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_passport_scan.jpg', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_mother_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_lor.jpg', 'Offer Letter/KaziShibliZamanRahil_sop.jpg', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.jpg', '2026-01-08 19:05:34', '3', '10', 'Graduate', 'Matter of Life', 'winter', '2027', 'No'),
+(42, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', '169/A/8 West Dolaipar, Dhaka-1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.jpg', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_passport_scan.jpg', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_mother_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_lor.jpg', 'Offer Letter/KaziShibliZamanRahil_sop.jpg', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.jpg', '2026-01-08 19:11:34', '3', '10', 'Graduate', 'Matter of Life', 'winter', '2027', 'No'),
+(43, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', '169/A/8 West Dolaipar, Dhaka-1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.jpg', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_passport_scan.jpg', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_mother_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_lor.jpg', 'Offer Letter/KaziShibliZamanRahil_sop.jpg', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.jpg', '2026-01-08 19:18:18', '3', '10', 'Graduate', 'Matter of Life', 'winter', '2027', 'No'),
+(44, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', '169/A/8 West Dolaipar, Dhaka-1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.jpg', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_passport_scan.jpg', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_mother_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_lor.jpg', 'Offer Letter/KaziShibliZamanRahil_sop.jpg', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.jpg', '2026-01-08 19:19:37', '3', '10', 'Graduate', 'Matter of Life', 'winter', '2027', 'No'),
+(45, 'Kazi Shibli Zaman Rahil', 'Kazi Nadiruzzaman', 'Razia Sultana', '2002-04-03', 'Bangladeshi', 'Islam', 'N/A', '01639149794', 'iamksrahil03@gmail.com', '169/A/8 West Dolaipar, Dhaka-1204', '2018', '2020', 'Bangla', 'Offer Letter/KaziShibliZamanRahil_nid_card.jpg', 'Offer Letter/KaziShibliZamanRahil_ssc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_hsc_certificate.jpg', 'Offer Letter/KaziShibliZamanRahil_passport_scan.jpg', 'Offer Letter/KaziShibliZamanRahil_english_cert.png', 'Offer Letter/KaziShibliZamanRahil_father_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_mother_nid.jpg', 'Offer Letter/KaziShibliZamanRahil_lor.jpg', 'Offer Letter/KaziShibliZamanRahil_sop.jpg', 'Offer Letter/KaziShibliZamanRahil_cv.png', 'Offer Letter/KaziShibliZamanRahil_passport_photo.jpg', '2026-01-08 19:22:27', '3', '10', 'Graduate', 'Matter of Life', 'winter', '2027', 'No');
 
 -- --------------------------------------------------------
 
@@ -383,7 +379,6 @@ INSERT INTO `program` (`program_id`, `name`) VALUES
 (2, 'Graduate Programs'),
 (3, 'PhD Programs'),
 (1, 'Undergraduate Programs');
-
 
 -- --------------------------------------------------------
 
@@ -589,7 +584,6 @@ INSERT INTO `subject` (`subject_id`, `name`, `field_id`, `description`) VALUES
 (184, 'Medical Nanoelectronics and Microsystems', 3, 'This specialized field combines nanotechnology with electronics to create tiny devices that can diagnose, monitor, and treat diseases at the cellular and molecular levels, revolutionizing medical devices and therapies.');
 
 -- --------------------------------------------------------
-
 
 --
 -- Table structure for table `tuitionfee`
@@ -1226,9 +1220,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`UserID`, `FullName`, `Email`, `PasswordHash`, `SignUpDate`) VALUES
-(11, 'Rahil', 'r@gmail.com', '$2y$10$d5yvYt6FfuKgd9viJlbz6.Xbt0ROONQx/k4YBI2w.0iqv3YTLsI.K', '2025-06-18 23:46:47');
+(0, 'Kazi Shibli Zaman Rahil', 'iamksrahil03@gmail.com', '$2y$10$pF/L1Q3fDPeDXjJ9Km9l7e7KcEi6up6NFjF.WvvDgf1ivlTUMw1Ia', '2026-01-08 11:45:56');
 
--- --------------------------------------------------------
+--
+-- Indexes for dumped tables
+--
 
 --
 -- Indexes for table `admin`
@@ -1245,9 +1241,6 @@ ALTER TABLE `admissionrequirements`
   ADD KEY `university_id` (`university_id`),
   ADD KEY `program_id` (`program_id`),
   ADD KEY `field_id` (`field_id`);
-
-
-
 
 --
 -- Indexes for table `contact_messages`
@@ -1276,7 +1269,6 @@ ALTER TABLE `fieldofstudy`
   ADD PRIMARY KEY (`field_id`),
   ADD UNIQUE KEY `name` (`name`);
 
-
 --
 -- Indexes for table `offer_letter_requests`
 --
@@ -1290,7 +1282,6 @@ ALTER TABLE `program`
   ADD PRIMARY KEY (`program_id`),
   ADD UNIQUE KEY `name` (`name`);
 
-
 --
 -- Indexes for table `subject`
 --
@@ -1298,7 +1289,6 @@ ALTER TABLE `subject`
   ADD PRIMARY KEY (`subject_id`),
   ADD UNIQUE KEY `name` (`name`),
   ADD KEY `field_id` (`field_id`);
-
 
 --
 -- Indexes for table `tuitionfee`
@@ -1341,6 +1331,9 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`UserID`),
   ADD UNIQUE KEY `Email` (`Email`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -1378,12 +1371,11 @@ ALTER TABLE `countrylist`
 ALTER TABLE `fieldofstudy`
   MODIFY `field_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
-
 --
 -- AUTO_INCREMENT for table `offer_letter_requests`
 --
 ALTER TABLE `offer_letter_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `program`
@@ -1392,24 +1384,10 @@ ALTER TABLE `program`
   MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `questions`
---
-ALTER TABLE `questions`
-  MODIFY `QuestionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
-
---
--- AUTO_INCREMENT for table `reading_passages`
---
-ALTER TABLE `reading_passages`
-  MODIFY `PassageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
-
---
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
   MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
-
 
 --
 -- AUTO_INCREMENT for table `tuitionfee`
@@ -1430,17 +1408,10 @@ ALTER TABLE `universityprogramfield`
   MODIFY `upf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=384;
 
 --
--- AUTO_INCREMENT for table `userprogress`
---
-ALTER TABLE `userprogress`
-  MODIFY `ProgressID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -1460,13 +1431,11 @@ ALTER TABLE `admissionrequirements`
 ALTER TABLE `countrydetails`
   ADD CONSTRAINT `countrydetails_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countrylist` (`country_id`);
 
-
 --
 -- Constraints for table `subject`
 --
 ALTER TABLE `subject`
   ADD CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`field_id`) REFERENCES `fieldofstudy` (`field_id`);
-
 
 --
 -- Constraints for table `tuitionfee`
@@ -1490,14 +1459,9 @@ ALTER TABLE `universityprogramfield`
   ADD CONSTRAINT `universityprogramfield_ibfk_2` FOREIGN KEY (`program_id`) REFERENCES `program` (`program_id`),
   ADD CONSTRAINT `universityprogramfield_ibfk_3` FOREIGN KEY (`field_id`) REFERENCES `fieldofstudy` (`field_id`),
   ADD CONSTRAINT `universityprogramfield_ibfk_4` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`);
-
---
--- Constraints for table `userprogress`
---
-ALTER TABLE `userprogress`
-  ADD CONSTRAINT `userprogress_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
