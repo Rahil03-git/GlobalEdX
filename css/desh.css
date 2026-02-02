@@ -232,7 +232,7 @@ background-color: #444;
   transform: scale(0.95); 
   }
 
-  /* 2nd navbar css part start */
+/* 2nd navbar css part start */
 .second-navbar {
   background-color: white;
   color: black;
@@ -431,6 +431,7 @@ background-color: #444;
 
 
 /* banner css part end */
+
 /* chatbot part starts */
 .chatbot-icon {
   background-color: black;
@@ -505,6 +506,8 @@ background-color: #444;
 .filter-section button:last-child {
   border-right: none; /* remove right border on last button */
 }
+
+
 
 /* footer css part start  */
 .secondary-footer {
@@ -764,6 +767,7 @@ cursor: pointer;
 background-color: #f0f0f0;
 }
 /* notification panel end */
+
 
 /* FAQ Overlay (invisible backdrop to detect outside click) */
 
