@@ -170,3 +170,50 @@ button{
 }
 </style>
 </head>
+
+<body class="<?= $darkClass ?>">
+  
+<div class="container">
+
+<h2>🎯 Recommendation Result</h2>
+
+<h3 class="status <?= $class ?>"><?= $status ?></h3>
+
+<!-- 🔽 SELECTED INFORMATION -->
+<?php if ($info): ?>
+<div class="meta">
+  <p><strong>University:</strong> <?= $info['university_name'] ?></p>
+  <p><strong>Program:</strong> <?= $info['program_name'] ?></p>
+  <p><strong>Field of Study:</strong> <?= $info['field_name'] ?></p>
+  <p><strong>Subject:</strong> <?= $info['subject_name'] ?></p>
+</div>
+<?php endif; ?>
+
+<div class="progress">
+  <div class="bar <?= $class ?>" style="width:<?= $score ?>%"></div>
+</div>
+
+<p><strong>Score:</strong> <?= $score ?> / 100</p>
+
+<hr>
+
+<h4>📌 Admission Requirement</h4>
+<?php if ($req): ?>
+<p><strong>Academic:</strong> <?= $req['academic_qualification'] ?></p>
+<p><strong>Language:</strong> <?= $req['language_requirement'] ?></p>
+<p><strong>Entrance Exam:</strong> <?= $req['entrance_exam'] ?></p>
+<p><strong>Other:</strong> <?= $req['other_requirements'] ?></p>
+<p><strong>Deadline:</strong> <?= $req['application_deadline'] ?></p>
+<?php else: ?>
+<p>No requirement data available.</p>
+<?php endif; ?>
+
+<hr>
+
+<form action="index.php">
+  <button>⬅ Back to Home</button>
+</form>
+
+</div>
+</body>
+</html>
